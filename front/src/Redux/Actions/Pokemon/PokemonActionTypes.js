@@ -1,0 +1,2 @@
+export const POKEMON_ERROR = 'POKEMON_ERROR'
+export const GET_ALL_POKEMONS = 'GET_ALL_POKEMONS'
