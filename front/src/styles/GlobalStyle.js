@@ -1,14 +1,20 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+    :root {
+        --font-color: #FFFFFF;
+        --main-color: #CE1131;
+        --secondary-color: #BD0F34;
+    }
     html {
+        font-size               : 10px !important;
         box-sizing              : border-box;
-        font-size               : 10px;
         padding                 : 0;
         margin                  : 0;
     }
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-size               : 10px !important;
+        font-family: 'Press Start 2P', cursive, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         margin                  : 0;

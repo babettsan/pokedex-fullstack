@@ -1,10 +1,26 @@
 import React from 'react'
+import NavBar from '../Components/NavBar'
+import HomeAside from '../Components/HomeAside'
+import HomeContent from '../Components/HomeContent'
+
+import styled from 'styled-components'
+
+const Divider = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`
 
 const Home = () => {
     console.log('Hola')
     return (
         <div>
-            <h1>Home</h1>
+            <NavBar/>
+            
+            <Divider>
+                <HomeAside/>
+                <HomeContent/>
+            </Divider>
+            
         </div>
     )
 }
