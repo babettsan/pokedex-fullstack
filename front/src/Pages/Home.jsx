@@ -11,14 +11,13 @@ const Divider = styled.div`
 `
 
 const Home = () => {
-    console.log('Hola')
     return (
         <div>
             <NavBar/>
             
             <Divider>
-                <HomeAside/>
-                <HomeContent/>
+                <HomeAside key='home-aside'/>
+                <HomeContent key='home-content'/>
             </Divider>
             
         </div>
