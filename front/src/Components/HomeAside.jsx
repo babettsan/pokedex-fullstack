@@ -6,7 +6,7 @@ const Aside = styled.aside`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30em;
+    width: 20vw;
     height: 100vh;
     background: var(--secondary-color);
     border-right: .4em solid black;
