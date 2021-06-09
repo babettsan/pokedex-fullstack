@@ -9,7 +9,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 70vw;
+    width: 60vw;
 `
 
 const HomeContent = () => {

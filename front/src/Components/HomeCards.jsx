@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -155,12 +156,14 @@ const HomeCards = ({ pokemon }) => {
     }
 
     return (
-        <>            
+        <>
             <Card key={pokemon.id} className={selectType(pokemon.types[0])}>
-                <Pic src={pokemon.image} alt={pokemon.name}/>
-                <Id>#{pokemon.id}</Id>
-                <Name>{pokemon.name}</Name>
-                <Type>{pokemon.types[0].name}</Type>
+                <Link to={`/details/${pokemon.id}`}>
+                    <Pic src={pokemon.image} alt={pokemon.name}/>
+                </Link>
+                    <Id>#{pokemon.id}</Id>
+                    <Name>{pokemon.name}</Name>
+                    <Type>{pokemon.types[0].name}</Type>
             </Card>
         </>
     )

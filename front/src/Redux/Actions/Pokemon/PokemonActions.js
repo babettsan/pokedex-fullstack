@@ -1,6 +1,7 @@
 import { 
-    // POKEMON_ERROR,
-    GET_ALL_POKEMONS
+    POKEMON_ERROR,
+    GET_ALL_POKEMONS,
+    GET_POKEMON_BY_ID
 } from './PokemonActionTypes'
 
 import axios from 'axios'
@@ -39,4 +40,28 @@ export const getAllPokemons = () => {
             }
         )
     }    
+}
+
+export const getPokemonById = (id) => {
+    return async (dispatch) => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+            .then(response => {
+                const pokemon = response.data
+                dispatch(
+                    {
+                        type: GET_POKEMON_BY_ID,
+                        payload: pokemon
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: POKEMON_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }  
 }

@@ -1,6 +1,7 @@
 import {
     POKEMON_ERROR,
-    GET_ALL_POKEMONS
+    GET_ALL_POKEMONS,
+    GET_POKEMON_BY_ID
 } from '../Actions/Pokemon/PokemonActionTypes'
 
 const initialState = {
@@ -22,6 +23,12 @@ const pokemonReducer = (state = initialState, action) => {
                 ...state,
                 pokemons: action.payload,
                 error: ''
+            }
+        }
+        case GET_POKEMON_BY_ID: {
+            return {
+                ...state,
+                pokemon: action.payload
             }
         }
         default: {
