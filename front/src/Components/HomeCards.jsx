@@ -1,4 +1,6 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { getPokemonById } from '../Redux/Actions/Pokemon/PokemonActions'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
@@ -8,13 +10,13 @@ const Card = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border: .1em solid black;
     border-radius: 2em;
     width: 12em;
     height: 16em;
     padding: 4em;
     margin: 2em;
     transition: .3s;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     &:hover {
         transform: scale(1.10);
     }
@@ -93,6 +95,8 @@ const Type = styled.p`
 
 
 const HomeCards = ({ pokemon }) => {
+
+    const dispatch = useDispatch()
     
     const selectType = (type) => {
         switch (type.name) {
@@ -157,14 +161,14 @@ const HomeCards = ({ pokemon }) => {
 
     return (
         <>
-            <Card key={pokemon.id} className={selectType(pokemon.types[0])}>
-                <Link to={`/details/${pokemon.id}`}>
-                    <Pic src={pokemon.image} alt={pokemon.name}/>
-                </Link>
-                    <Id>#{pokemon.id}</Id>
-                    <Name>{pokemon.name}</Name>
-                    <Type>{pokemon.types[0].name}</Type>
-            </Card>
+            <Link to={`/details/${pokemon.id}`} style={{ textDecoration: 'none', color: 'black' }} onClick={() => dispatch(getPokemonById(pokemon.id))}>
+                <Card key={pokemon.id} className={selectType(pokemon.types[0])}>
+                        <Pic src={pokemon.image} alt={pokemon.name} />
+                        <Id>#{pokemon.id}</Id>
+                        <Name>{pokemon.name}</Name>
+                        <Type>{pokemon.types[0].name}</Type>
+                </Card>
+            </Link>
         </>
     )
 }

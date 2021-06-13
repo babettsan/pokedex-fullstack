@@ -7,8 +7,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import {
   FirebaseAppProvider,
-  useFirestoreDocData,
-  useFirestore,
+  // useFirestoreDocData,
+  // useFirestore,
 } from "reactfire";
 import firebaseConfig from "./firebaseConfig"; //Este es el archivo que creaste con anterioridad que contiene las credenciales de Firebase
 
