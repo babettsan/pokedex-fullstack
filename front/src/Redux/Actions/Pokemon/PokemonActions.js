@@ -1,14 +1,16 @@
 import { 
-    POKEMON_ERROR,
+    // POKEMON_ERROR,
+    LOADING,
     GET_ALL_POKEMONS,
     GET_POKEMON_BY_ID
 } from './PokemonActionTypes'
 
 import axios from 'axios'
 
-const getPokemonsAPI = async () => {
+const getPokemonsAPI = async (max, min) => {
     try {
-        const poke = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=151`)
+        console.log('REQUEST getPokemonsAPI')
+        const poke = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${max}&offset=${min}`)
         const promises = poke.data.results.map((it) => axios.get(it.url))
         const pokemons = await Promise.all(promises).then(values => {
             return values.map((pk) => (
@@ -31,37 +33,26 @@ const getPokemonsAPI = async () => {
     }
 }
 
-export const getAllPokemons = () => {
+export const getAllPokemons = (max, min) => {
     return async (dispatch) => {
+        dispatch({ type: LOADING })
         dispatch(
             {
                 type: GET_ALL_POKEMONS,
-                payload: await getPokemonsAPI()
+                payload: await getPokemonsAPI(max, min)
             }
         )
-    }    
+    }
 }
 
 export const getPokemonById = (id) => {
-    return async (dispatch) => {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-            .then(response => {
-                const pokemon = response.data
-                dispatch(
-                    {
-                        type: GET_POKEMON_BY_ID,
-                        payload: pokemon
-                    }
-                )
-            })
-            .catch(error => {
-                const errorMsg = error.message
-                dispatch(
-                    {
-                        type: POKEMON_ERROR,
-                        payload: errorMsg
-                    }
-                )
-            })
-    }  
+    return (dispatch) => {
+        dispatch(
+            {
+                type: GET_POKEMON_BY_ID,
+                payload: parseInt(id)
+            }
+        )
+    }
+    
 }

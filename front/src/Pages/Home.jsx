@@ -9,6 +9,16 @@ const Divider = styled.div`
     display: flex;
     flex-wrap: wrap;
 `
+const Caption = styled.p`
+    padding-top: 1em;
+    font-size: 1.6em;
+    color: black;
+    text-align: center;
+`
+const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+`
 
 const Home = () => {
     return (
@@ -17,7 +27,10 @@ const Home = () => {
             
             <Divider>
                 <HomeAside key='home-aside'/>
-                <HomeContent key='home-content'/>
+                <Content>
+                    <Caption>Some wild Pokemon have appeared!</Caption>
+                    <HomeContent key='home-content'/>
+                </Content>
             </Divider>
             
         </div>
