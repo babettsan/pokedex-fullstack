@@ -4,19 +4,15 @@ import styled from 'styled-components'
 
 const Card = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center;
     border-radius: 2em;
-    width: 12em;
-    height: 16em;
-    padding: 4em;
+    width: 80em;
+    height: 40em;
+    padding: 2em;
     margin: 2em;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     transition: .3s;
-    &:hover {
-        transform: scale(1.10);
-    }
     &.normal {
         background:#A8A77A;
     }
@@ -72,21 +68,32 @@ const Card = styled.div`
         background:#D685AD;
     }
 `
+const ImgContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+`
+const DataContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+`
 const Pic = styled.img`
     object-fit: contain;
-    height: 6em;
-    width: 6em;
+    height: 8em;
+    width: 8em;
 `
-const Id = styled.p`
+const Title = styled.p`
     color: black;
+    font-size: 1.2em;
     border: .1em solid black;
     border-radius: 2em;
-    padding: .5em 1.5em .5em 1.5em;
+    padding: 1em 2em 1em 2em;
+    text-transform: uppercase;
 `
-const Name = styled.p`
-    text-transform: capitalize;
-`
-const Type = styled.p`
+const Caption = styled.p`
+    margin: 3em 0 3em 0;
     text-transform: capitalize;
 `
 
@@ -157,10 +164,29 @@ const DetailCard = ({ pokemon }) => {
         <>
         {pokemon?.map((pokemon) => (
             <Card key={pokemon.id} className={selectType(pokemon.types[0])}>
-                <Pic src={pokemon.image} alt={pokemon.name} />
-                <Id>#{pokemon.id}</Id>
-                <Name>{pokemon.name}</Name>
-                <Type>{pokemon.types[0].name}</Type>
+                <Title>#{pokemon.id} {pokemon.name} - {pokemon.types[0].name} Type</Title>
+                <ImgContainer>
+                    <div>
+                        <Caption>Front</Caption>
+                        <Pic src={pokemon.image} alt={pokemon.name} />
+                    </div>
+                    <div>
+                        <Caption>Back</Caption>
+                        <Pic src={pokemon.imageBack} alt={pokemon.name} />
+                    </div>
+                </ImgContainer>
+                <DataContainer>
+                <div>
+                    <Caption>Height {pokemon.height}</Caption>
+                    <Caption>Weight {pokemon.weight}</Caption>
+                </div>
+                <div>
+                    <Caption>HP  {pokemon.hp}</Caption>
+                    <Caption>ATK {pokemon.attack}</Caption>
+                    <Caption>DEF {pokemon.defense}</Caption>  
+                    <Caption>SPD {pokemon.speed}</Caption>              
+                </div>
+                </DataContainer>
             </Card>
         ))}
         </>

@@ -14,7 +14,6 @@ const Divider = styled.div`
 const Content = styled.div`
     display: flex;
     justify-content: center;
-    align-items: center;
     width: 75vw;
 `
 
