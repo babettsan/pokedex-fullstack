@@ -7,11 +7,11 @@ import styled from 'styled-components'
 
 const Aside = styled.aside`
     display: flex;
-    justify-content: center;
+    padding-top: 8em;
     flex-direction: column;
     align-items: center;
     width: 20vw;
-    height: 93vh;
+    height: 125vh;
     background: var(--secondary-color);
     border-right: .4em solid black;
 `
@@ -39,8 +39,8 @@ const HomeAside = () => {
         <Aside>
             <Title>Generation</Title>
             <Caption onClick={() => dispatch(getAllPokemons(151, 0))}>#1</Caption>
-            <Caption onClick={() => dispatch(getAllPokemons(251, 152))}>#2</Caption>
-            <Caption onClick={() => dispatch(getAllPokemons(386, 252))}>#3</Caption>
+            <Caption onClick={() => dispatch(getAllPokemons(100, 151))}>#2</Caption>
+            <Caption onClick={() => dispatch(getAllPokemons(135, 251))}>#3</Caption>
         </Aside>
     )
 }

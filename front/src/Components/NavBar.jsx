@@ -27,9 +27,9 @@ const NavBar = () => {
                 <Link to='/home' style={{ textDecoration: 'none'}}>
                     <Caption>Home</Caption>
                 </Link>
-                <Caption>PokeRoulette</Caption>
                 <Caption>Your Team</Caption>
-                <Caption>Create Pokemon</Caption>
+                <Caption>PokeRoulette</Caption>
+                {/* <Caption>Create Pokemon</Caption> */}
                 <Caption>About Us</Caption>
             </Nav>
         </>

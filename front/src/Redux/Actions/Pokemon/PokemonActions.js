@@ -17,7 +17,15 @@ const getPokemonsAPI = async (max, min) => {
                 {
                     id: pk.data.id,
                     name: pk.data.name,
+                    height: pk.data.height,
+                    weight: pk.data.weight,
+                    abilities: pk.data.abilities,
+                    hp: pk.data.stats[0].base_stat,
+                    attack: pk.data.stats[1].base_stat,
+                    defense: pk.data.stats[2].base_stat,
+                    speed: pk.data.stats[5].base_stat,
                     image: pk.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
+                    imageBack: pk.data.sprites.versions["generation-v"]["black-white"].animated.back_default,
                     types: pk.data.types.map((t) => {
                         return {
                             id: t.type.url.split('/')[6],
