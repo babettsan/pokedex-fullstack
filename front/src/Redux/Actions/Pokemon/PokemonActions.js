@@ -2,7 +2,8 @@ import {
     // POKEMON_ERROR,
     LOADING,
     GET_ALL_POKEMONS,
-    GET_POKEMON_BY_ID
+    GET_POKEMON_BY_ID,
+    CATCH_POKEMON
 } from './PokemonActionTypes'
 
 import axios from 'axios'
@@ -62,5 +63,15 @@ export const getPokemonById = (id) => {
             }
         )
     }
-    
+}
+
+export const catchPokemon = (id) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: CATCH_POKEMON,
+                payload: parseInt(id)
+            }
+        )
+    }
 }

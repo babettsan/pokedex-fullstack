@@ -2,13 +2,15 @@ import {
     LOADING,
     POKEMON_ERROR,
     GET_ALL_POKEMONS,
-    GET_POKEMON_BY_ID
+    GET_POKEMON_BY_ID,
+    CATCH_POKEMON
 } from '../Actions/Pokemon/PokemonActionTypes'
 
 const initialState = {
     loading: false,
     pokemons: [],
     pokemon: {},
+    catchPokemon: [],
     error: ''
 }
 
@@ -38,6 +40,12 @@ const pokemonReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pokemon: state.pokemons.filter(p => p.id === action.payload)
+            }
+        }
+        case CATCH_POKEMON: {
+            return {
+                ...state,
+                catchPokemon: [...state.catchPokemon, state.pokemon.find(p => p.id === action.payload)]
             }
         }
         default: {
