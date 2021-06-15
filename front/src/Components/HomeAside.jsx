@@ -22,12 +22,15 @@ const Title = styled.p`
 `
 const Caption = styled.p`
     font-size: 1.4em;
-    color: var(--font-color);
+    color: black;
+    border-radius: 50%;
+    background: white;
+    padding: 1.4em 1em 1.4em 1em;
     transition: .2s;
     &:hover {
         cursor: pointer;
-        transform: scale(1.15);
-        text-shadow: 3px 5px 8px black;
+        transform: scale(1.20);
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     }
 `
 

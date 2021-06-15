@@ -93,7 +93,6 @@ const Type = styled.p`
     text-transform: capitalize;
 `
 
-
 const HomeCards = ({ pokemon }) => {
 
     const dispatch = useDispatch()

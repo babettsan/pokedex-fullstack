@@ -1,17 +1,16 @@
 import React from 'react'
-import Swal from 'sweetalert2'
-
-import { useDispatch } from 'react-redux'
-import { catchPokemon } from '../Redux/Actions/Pokemon/PokemonActions'
 
 import styled from 'styled-components'
-
+const Team = styled.div`
+    display: flex;
+    flex-direction: column;
+`
 const Card = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     border-radius: 2em;
-    width: 80em;
+    width: 90vw;
     height: 40em;
     padding: 2em;
     margin: 2em;
@@ -111,57 +110,8 @@ const Icon = styled.img`
     border-radius: 50%;
     background: white;
 `
-const CatchContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-    align-items: center;
-    margin-top: -2.3em;
-    transition: .3s;
-    @keyframes move-to-the-side {
-        0% {
-            transform: translateX(0);
-        }
-        50% {
-            transform: translateX(1em);
-        }
-        100% {
-            transform: translateX(0);
-        }
-    }
-    &:hover {
-        animation: move-to-the-side 750ms infinite;
-        cursor: pointer;
-        p {
-            visibility: visible;
-            text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-        }
-    }
-`
-const CatchText = styled.p`
-    visibility: hidden;
-    font-size: 1.4em;
-`
-const Pokeball = styled.img`
-    width: 8em;
-    height: 8em;
-    align-self: center;
-`
 
-const DetailCard = ({ pokemon }) => {
-
-    const dispatch = useDispatch()
-
-    const handleClick = (id) => {
-        dispatch(catchPokemon(id))
-        Swal.fire({
-            title: `Gotta catch 'em all!`,
-            text: `This Pokemon will appear in TEAM Section!`,
-            imageUrl: 'https://i.imgur.com/hY4kEI1.gif',
-            imageAlt: 'pokeball',
-            width: 500
-        })
-    }
+const TeamCard = ({ pokemonTeam }) => {
 
     const selectType = (type) => {
         switch (type.name) {
@@ -225,8 +175,8 @@ const DetailCard = ({ pokemon }) => {
     }
 
     return (
-        <>
-        {pokemon?.map((pokemon) => (
+        <Team>
+        {pokemonTeam?.map((pokemon) => (
             <Card key={pokemon.id} className={selectType(pokemon.types[0])}>
                 <Title>#{pokemon.id} {pokemon.name} - {pokemon.types[0].name} Type</Title>
                 <ImgContainer>
@@ -250,17 +200,10 @@ const DetailCard = ({ pokemon }) => {
                     <Caption><Icon src='https://api.iconify.design/ri:speed-fill.svg'/>SPD {pokemon.speed}</Caption>              
                 </div>
                 </DataContainer>
-
-                <CatchContainer onClick={() => handleClick(pokemon.id)}>
-                    <CatchText>Catch</CatchText>
-                    <Pokeball src='https://i.imgur.com/q5o0NkA.png'/>
-                    <CatchText>Now!!</CatchText>
-                </CatchContainer>
-
             </Card>
         ))}
-        </>
+        </Team>
     )
 }
 
-export default DetailCard
+export default TeamCard
