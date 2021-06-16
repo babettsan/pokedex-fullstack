@@ -1,6 +1,7 @@
 import React from 'react'
 import Swal from 'sweetalert2'
 
+import { useHistory } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { catchPokemon } from '../Redux/Actions/Pokemon/PokemonActions'
 
@@ -10,6 +11,7 @@ const Card = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    align-self: center;
     border-radius: 2em;
     width: 80em;
     height: 40em;
@@ -186,6 +188,8 @@ const DetailCard = ({ pokemon }) => {
 
     const dispatch = useDispatch()
 
+    const history = useHistory();
+
     const handleClick = (id) => {
         dispatch(catchPokemon(id))
         Swal.fire({
@@ -195,6 +199,7 @@ const DetailCard = ({ pokemon }) => {
             imageAlt: 'pokeball',
             width: 500
         })
+        history.push("/home");
     }
 
     const selectType = (type) => {

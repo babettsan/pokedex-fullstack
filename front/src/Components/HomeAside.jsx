@@ -1,4 +1,5 @@
 import React from 'react'
+import AsideCard from './AsideCard'
 
 import { useDispatch } from 'react-redux'
 import { getAllPokemons } from '../Redux/Actions/Pokemon/PokemonActions'
@@ -7,13 +8,14 @@ import styled from 'styled-components'
 
 const Aside = styled.aside`
     display: flex;
-    padding: 4em 0 4em 0;
+    padding: 1.5em 0 1.5em 0;
     flex-direction: column;
     align-items: center;
     width: 20vw;
     height: 125vh;
-    background: var(--secondary-color);
     border-right: .4em solid black;
+    background: rgb(189,15,27);
+    background: linear-gradient(90deg, rgba(189,15,27,1) 0%, rgba(189,15,27,1) 0%, rgba(189,15,52,1) 100%);
     @media (max-width: 900px) {
         flex-direction: row;
         width: 100vw;
@@ -52,6 +54,7 @@ const HomeAside = () => {
 
     return (
         <Aside>
+            <AsideCard/>
             <Title>Generation</Title>
             <Caption onClick={() => dispatch(getAllPokemons(151, 0))}>#1</Caption>
             <Caption onClick={() => dispatch(getAllPokemons(100, 151))}>#2</Caption>
