@@ -189,11 +189,17 @@ const AsideCard = () => {
                 <ControlContainer>
 
                     <ControlLeft>
-                    <Link to={`/details/${pokemonCatch[pokemonCatch.length - 1].id}`} style={{ textDecoration: 'none', color: 'black' }} onClick={() => dispatch(getPokemonById(pokemonCatch[pokemonCatch.length - 1].id))}>
+                        {(pokemonCatch.length > 0) ?
+                        <Link to={`/details/${pokemonCatch[pokemonCatch.length - 1].id}`} style={{ textDecoration: 'none', color: 'black' }} onClick={() => dispatch(getPokemonById(pokemonCatch[pokemonCatch.length - 1].id))}>
+                            <ControlDetail>
+                                <ControlImg src='https://api.iconify.design/entypo:magnifying-glass.svg?color=white'/>
+                            </ControlDetail>
+                        </Link>
+                        :
                         <ControlDetail>
                             <ControlImg src='https://api.iconify.design/entypo:magnifying-glass.svg?color=white'/>
                         </ControlDetail>
-                    </Link>
+                        }
                         <ControlName>
                             <p>Total: {pokemonCatch.length}</p>
                         </ControlName>
