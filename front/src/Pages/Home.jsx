@@ -7,7 +7,10 @@ import styled from 'styled-components'
 
 const Divider = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    @media (max-width: 900px) {
+        flex-direction: column;
+    }
 `
 const Caption = styled.p`
     padding-top: 1em;

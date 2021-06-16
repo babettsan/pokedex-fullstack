@@ -8,9 +8,13 @@ import styled from 'styled-components'
 
 const Content = styled.div`
     display: flex;
+    flex-direction: row;
     justify-content: center;
     margin-top: 4em;
-    width: 100vw;
+    width: 100%;
+    @media (max-width: 900px) {
+        flex-direction: column;
+    }
 `
 const Error = styled.div`
     display: flex;

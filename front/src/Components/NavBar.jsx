@@ -8,9 +8,6 @@ const Nav = styled.nav`
     justify-content: space-around;
     background: var(--main-color);
     border-bottom: .4em solid black;
-    @media (max-width: 600px) {
-        flex-direction: column;
-    }
 `
 const Caption = styled.p`
     font-size: 1.4em;
@@ -22,6 +19,13 @@ const Caption = styled.p`
         cursor: pointer;
         transform: scale(1.15);
         text-shadow: 3px 5px 8px black;
+    }
+    @media (max-width: 900px) {
+        width: 1em;
+        visibility: hidden;
+        img {
+            visibility: visible
+        }
     }
 `
 const Icon = styled.img`
