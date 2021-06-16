@@ -52,6 +52,10 @@ const Button = styled.button`
 const Container = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
+    @media (max-width: 900px) {
+        flex-direction: column;
+    }
 `
 const Content = styled.div`
     display: flex;
@@ -62,6 +66,9 @@ const Content = styled.div`
     width: 78vw;
     h2 {
         text-align: center;
+    }
+    @media (max-width: 900px) {
+        flex-direction: column;
     }
 `
 
