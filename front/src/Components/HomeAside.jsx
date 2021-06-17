@@ -8,19 +8,23 @@ import styled from 'styled-components'
 
 const Aside = styled.aside`
     display: flex;
-    padding: 1.5em 0 1.5em 0;
     flex-direction: column;
     align-items: center;
-    width: 20vw;
-    height: 125vh;
-    border-right: .4em solid black;
+    padding: 1em;
+    margin: .5em 0 0 .5em;
+    width: 25em;
+    height: 100%;
+    border-radius: 2em;
     background: rgb(189,15,27);
     background: linear-gradient(90deg, rgba(189,15,27,1) 0%, rgba(189,15,27,1) 0%, rgba(189,15,52,1) 100%);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     @media (max-width: 900px) {
         flex-direction: row;
-        width: 100vw;
+        width: 100%;
         height: 2em;
-        border-right: none;
+        margin: 0;
+        border-radius: 0em;
+        padding: 0;
     }
 `
 const Title = styled.p`

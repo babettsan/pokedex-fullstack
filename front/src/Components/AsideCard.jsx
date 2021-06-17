@@ -7,13 +7,16 @@ import { getPokemonById } from '../Redux/Actions/Pokemon/PokemonActions'
 import styled from 'styled-components'
 
 const Container = styled.div`
-    width: 90%;
+    width: 100%;
     min-width: 20em;
-    border: .2em solid black;
+
     background: rgb(173,0,29);
     background: linear-gradient(90deg, rgba(173,0,29,1) 0%, rgba(206,17,49,1) 50%, rgba(173,0,29,1) 100%);
     border-radius: 2em;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    @media (max-width: 900px) {
+        display: none;
+    }
 `
 const Item = styled.div`
     margin: .5em 0 .5em 0;

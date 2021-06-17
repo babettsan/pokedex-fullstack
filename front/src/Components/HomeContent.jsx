@@ -30,6 +30,9 @@ const PageNumbers = styled.li`
         background-color: #ff1744;
         color: black
     }
+    @media (max-width: 900px) {
+        display: none;
+    }
 `
 const Button = styled.button`
     font-family: 'Press Start 2P';
@@ -176,11 +179,11 @@ const HomeContent = () => {
             </Container>
 
             <NumbersContainer>
-                <Button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Prev</Button>
+                <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Prev</Button>
                 {pageDecrementBtn}
                 {renderPageNumbers}
                 {pageIncrementBtn}
-                <Button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Next</Button>
+                <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Next</Button>
             </NumbersContainer>
 
             </>
