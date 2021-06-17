@@ -15,14 +15,18 @@ const Divider = styled.div`
 const Content = styled.div`
     display: flex;
     flex-direction: column;
-    width: 75vw;
+    margin: 0 auto 0 auto;
+    width: 68vw;
+    @media (max-width: 900px) {
+        width: 100%;
+    }
 `
 const Button = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 2em;
+    margin: 2em 0 0 0;
     height: 4em;
     width: 12em;
     border-radius: 2em;
@@ -32,6 +36,9 @@ const Button = styled.div`
     &:hover {
         transform: scale(1.10);
         cursor: pointer;
+    }
+    @media (max-width: 900px) {
+        margin: 2em auto 0;
     }
 `
 const Caption = styled.p`

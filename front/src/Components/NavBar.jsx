@@ -7,7 +7,7 @@ const Nav = styled.nav`
     display: flex;
     justify-content: space-around;
     background: var(--main-color);
-    border-bottom: .4em solid black;
+    border-bottom: .2em solid black;
 `
 const Caption = styled.p`
     font-size: 1.4em;
