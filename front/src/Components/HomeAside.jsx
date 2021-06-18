@@ -13,6 +13,7 @@ const Aside = styled.aside`
     padding: 1em;
     margin: .5em 0 0 .5em;
     width: 25em;
+    max-width: 25em;
     height: 100%;
     border-radius: 2em;
     background: rgb(189,15,27);
@@ -21,7 +22,8 @@ const Aside = styled.aside`
     @media (max-width: 900px) {
         flex-direction: row;
         width: 100%;
-        height: 2em;
+        max-width: 100%;
+        height: 6em;
         margin: 0;
         border-radius: 0em;
         padding: 0;
@@ -29,7 +31,7 @@ const Aside = styled.aside`
 `
 const Title = styled.p`
     font-size: 1.4em;
-    color: var(--font-color);
+    color: #FFFFFF;
     text-shadow: 3px 5px 8px black;
     @media (max-width: 900px) {
         display: none;
@@ -37,7 +39,7 @@ const Title = styled.p`
 `
 const Caption = styled.p`
     font-size: 1.4em;
-    color: black;
+    color: #000000;
     border-radius: 50%;
     background: white;
     padding: 1.4em 1em 1.4em 1em;

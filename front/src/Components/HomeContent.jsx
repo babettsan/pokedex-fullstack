@@ -14,7 +14,7 @@ const NumbersContainer = styled.ul`
     padding: 0;
 `
 const PageNumbers = styled.li`
-    color: black;
+    color: var(--font-color);
     cursor: pointer;
     font-size: 1.2em;
     font-weight: 500;
@@ -28,7 +28,7 @@ const PageNumbers = styled.li`
     }
     &.active {
         background-color: #ff1744;
-        color: black
+        color: #000000;
     }
     @media (max-width: 900px) {
         display: none;
@@ -41,12 +41,12 @@ const Button = styled.button`
     padding: 1.6em;
     background-color: transparent;
     border: none;
-    color: var(--dark-primary);
+    color: var(--font-color);
     cursor: pointer;
     transition: all .3s linear;
     &:hover {
         background: #ff1744;
-        color: black;
+        color: #000000;
     }
     &:focus {
         outline: none;
@@ -93,8 +93,7 @@ const HomeContent = () => {
     // Página actual, inicializada en 1
     const [currentPage, setCurrentPage] = useState(1)
     // Cards o Items que voy a mostrar por página
-    const [itemsPerPage] = useState(12)
-
+    const [itemsPerPage] = useState(16)
     // Número de páginas que quiero mostrar
     const [pageNumberLimit] = useState(5)
     // Máximo de páginas
