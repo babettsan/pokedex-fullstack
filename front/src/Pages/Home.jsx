@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from '../Components/NavBar'
 import HomeAside from '../Components/HomeAside'
 import HomeContent from '../Components/HomeContent'
+import Toggles from '../Components/Toggles'
 
 import styled from 'styled-components'
 
@@ -15,7 +16,7 @@ const Divider = styled.div`
 const Caption = styled.p`
     padding-top: 1em;
     font-size: 1.6em;
-    color: black;
+    color: var(--font-color);
     text-align: center;
 `
 const Content = styled.div`

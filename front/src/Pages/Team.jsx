@@ -26,6 +26,7 @@ const Image = styled.img`
     align-self: center;
 `
 const Message = styled.p`
+    color: var(--font-color);
     margin: 4em;
     font-size: 1.4em;
     line-height: 2em;

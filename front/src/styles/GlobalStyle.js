@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     :root {
-        --font-color: #FFFFFF;
         --main-color: #CE1131;
         --secondary-color: #BD0F34;
+        --font-color: ${props => props.theme.fontColor}
     }
     html {
         font-size: 10px !important;
@@ -20,17 +20,19 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
 
+        background-color: ${props => props.theme.body};
+        filter: ${props => props.theme.blur};
+
+        /* Scroll Bar */
         /* width */
         ::-webkit-scrollbar {
             display: none;
             width: 1em;
         }
-
         /* Track */
         ::-webkit-scrollbar-track {
             box-shadow: inset 0 0 5px grey;
         }
-
         /* Handle */
         ::-webkit-scrollbar-thumb {
             background: #ce111e;
@@ -44,5 +46,20 @@ const GlobalStyle = createGlobalStyle`
         list-style              : none;
     }
 `;
+
+export const lightTheme = {
+    body: '#FFFFFF',
+    fontColor: '#202020'
+}
+export const darkTheme = {
+    body: '#202020',
+    fontColor: '#FFFFFF'
+}
+export const bitsTheme = {
+    blur: 'blur(0)'
+}
+export const glassTheme = {
+    blur: 'blur(0.5em)'
+}
 
 export default GlobalStyle;
