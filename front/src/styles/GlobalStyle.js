@@ -4,7 +4,8 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         --main-color: #CE1131;
         --secondary-color: #BD0F34;
-        --font-color: ${props => props.theme.fontColor}
+        --font-color: ${props => props.theme.fontColor};
+        --background-simple: ${props => props.theme.backgroundSimple}
     }
     html {
         font-size: 10px !important;
@@ -20,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
 
+        transition: .25s;
         background-color: ${props => props.theme.body};
         filter: ${props => props.theme.blur};
 
@@ -49,11 +51,13 @@ export const GlobalStyle = createGlobalStyle`
 
 export const lightTheme = {
     body: '#FFFFFF',
-    fontColor: '#202020'
+    fontColor: '#000000',
+    backgroundSimple: '#FFFFFF'
 }
 export const darkTheme = {
     body: '#202020',
-    fontColor: '#FFFFFF'
+    fontColor: '#FFFFFF',
+    backgroundSimple: '#202020'
 }
 export const bitsTheme = {
     blur: 'blur(0)'

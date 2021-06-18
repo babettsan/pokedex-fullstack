@@ -1,10 +1,10 @@
 import React from 'react'
-import Swal from 'sweetalert2'
 
 import { useHistory } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { catchPokemon } from '../Redux/Actions/Pokemon/PokemonActions'
 
+import Swal from 'sweetalert2'
 import styled from 'styled-components'
 
 const Card = styled.div`
@@ -63,7 +63,6 @@ const Card = styled.div`
         background: radial-gradient(circle, rgba(249,85,135,1) 0%, rgba(249,85,135,1) 35%, rgba(228,58,110,1) 100%);
     }
     &.bug {
-        /* background:#A6B91A; */
         background: rgb(191,213,26);
         background: radial-gradient(circle, rgba(191,213,26,1) 0%, rgba(166,185,26,1) 35%, rgba(98,185,26,1) 100%);
     }
@@ -184,7 +183,8 @@ const DetailCard = ({ pokemon }) => {
             text: `This Pokemon will appear in TEAM Section!`,
             imageUrl: 'https://i.imgur.com/hY4kEI1.gif',
             imageAlt: 'pokeball',
-            width: 500
+            width: 500,
+            position: 'top',
         })
         history.push("/home");
     }
