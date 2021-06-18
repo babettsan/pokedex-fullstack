@@ -72,7 +72,15 @@ const Content = styled.div`
     }
     @media (max-width: 900px) {
         flex-direction: column;
+        width: 100vw;
     }
+`
+const LoadingImg = styled.img`
+    margin-top: 4em;
+    height: 40em;
+    width: 40em;
+    border-radius: 50%;
+    align-self: center;
 `
 
 const HomeContent = () => {
@@ -93,7 +101,7 @@ const HomeContent = () => {
     // Página actual, inicializada en 1
     const [currentPage, setCurrentPage] = useState(1)
     // Cards o Items que voy a mostrar por página
-    const [itemsPerPage] = useState(16)
+    const [itemsPerPage] = useState(12)
     // Número de páginas que quiero mostrar
     const [pageNumberLimit] = useState(5)
     // Máximo de páginas
@@ -163,7 +171,7 @@ const HomeContent = () => {
     if (loading) {
         return(
             <Content key='home-content'>
-                <h2>Loading...</h2>
+                <LoadingImg src='https://i.imgur.com/hN8NZYh.gif'/>                
             </Content>
         )
     } else {

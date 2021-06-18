@@ -2,7 +2,6 @@ import React from 'react'
 import NavBar from '../Components/NavBar'
 import HomeAside from '../Components/HomeAside'
 import HomeContent from '../Components/HomeContent'
-import Toggles from '../Components/Toggles'
 
 import styled from 'styled-components'
 

@@ -17,6 +17,7 @@ const Card = styled.div`
     margin: 2em;
     transition: .3s;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        
     &:hover {
         transform: scale(1.10);
     }
@@ -25,7 +26,6 @@ const Card = styled.div`
         background: radial-gradient(circle, rgba(168,167,122,1) 0%, rgba(168,167,122,1) 35%, rgba(140,139,105,1) 100%);
     }
     &.fire {
-        /* background:#EE8130; */
         background: rgb(238,129,48);
         background: radial-gradient(circle, rgba(238,129,48,1) 0%, rgba(238,129,48,1) 35%, rgba(255,90,0,1) 100%);
     }
