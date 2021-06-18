@@ -2,6 +2,7 @@ import {
     LOADING,
     POKEMON_ERROR,
     GET_ALL_POKEMONS,
+    GET_POKEMONS_BY_TYPE,
     GET_POKEMON_BY_ID,
     CATCH_POKEMON,
     DELETE_POKEMON
@@ -35,6 +36,13 @@ const pokemonReducer = (state = initialState, action) => {
                 pokemons: action.payload,
                 loading: false,
                 error: ''
+            }
+        }
+        case GET_POKEMONS_BY_TYPE: {
+            return {
+                ...state,
+                pokemons: action.payload,
+                loading: false
             }
         }
         case GET_POKEMON_BY_ID: {

@@ -63,7 +63,8 @@ const Card = styled.div`
         background: radial-gradient(circle, rgba(226,191,101,1) 0%, rgba(226,191,101,1) 35%, rgba(196,160,87,1) 100%);
     }
     &.flying {
-        background:#A98FF3;
+        background: rgb(163,145,255);
+        background: radial-gradient(circle, rgba(163,145,255,1) 0%, rgba(134,128,255,1) 50%, rgba(117,110,254,1) 100%);
     }
     &.psychic {
         background: rgb(249,85,135);
@@ -86,8 +87,11 @@ const Card = styled.div`
         background: radial-gradient(circle, rgba(118,61,255,1) 0%, rgba(111,53,252,1) 35%, rgba(74,0,255,1) 100%);
     }
     &.dark {
-        background: rgb(112,87,70);
-        background: radial-gradient(circle, rgba(112,87,70,1) 0%, rgba(112,87,70,1) 35%, rgba(79,62,50,1) 100%);
+        background: rgb(47,47,47);
+        background: radial-gradient(circle, rgba(47,47,47,1) 0%, rgba(24,24,24,1) 50%, rgba(0,0,0,1) 100%);
+        p {
+            color: white;
+        }
     }
     &.steel {
         background: rgb(183,183,206);
@@ -168,7 +172,8 @@ const TeamCard = ({ pokemonTeam }) => {
             text: ``,
             imageUrl: 'https://i.imgur.com/Z3kIkFf.gif',
             imageAlt: 'pokeball',
-            width: 500
+            width: 500,
+            position: 'top'
         })
     }
 

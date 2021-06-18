@@ -23,7 +23,8 @@ export const GlobalStyle = createGlobalStyle`
 
         transition: .25s;
         background-color: ${props => props.theme.body};
-        filter: ${props => props.theme.blur};
+        filter: ${props => props.theme.grey};
+        background-image: ${props => props.theme.backgroundImage};
 
         /* Scroll Bar */
         /* width */
@@ -39,6 +40,13 @@ export const GlobalStyle = createGlobalStyle`
         ::-webkit-scrollbar-thumb {
             background: #ce111e;
         }
+
+        @media (max-width: 900px) {
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+
     }
     code {
         font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -52,18 +60,22 @@ export const GlobalStyle = createGlobalStyle`
 export const lightTheme = {
     body: '#FFFFFF',
     fontColor: '#000000',
-    backgroundSimple: '#FFFFFF'
+    backgroundSimple: '#FFFFFF',
+    backgroundImage: `url('https://i.imgur.com/rO0vJiE.png')`
 }
 export const darkTheme = {
     body: '#202020',
     fontColor: '#FFFFFF',
-    backgroundSimple: '#202020'
+    backgroundSimple: '#202020',
+    backgroundImage: `url('https://i.imgur.com/E30sebh.png')`
 }
 export const bitsTheme = {
-    blur: 'blur(0)'
+    blur: 'blur(0)',
+    grey: 'grayscale(0%)'
 }
 export const glassTheme = {
-    blur: 'blur(0.5em)'
+    blur: 'blur(0.5em)',
+    grey: 'grayscale(100%)'
 }
 
 export default GlobalStyle;

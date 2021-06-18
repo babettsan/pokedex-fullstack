@@ -8,7 +8,6 @@ export function getTypePhrases() {
 
 // Store TypePhrase data in firestore
 export function createTypePhrase(TypePhrase){
-  console.log("entre",TypePhrase);
   return this.firestore.collection('TypePhrases').add(TypePhrase);
 }
 

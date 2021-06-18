@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useDispatch } from 'react-redux'
-import { getAllPokemons } from '../Redux/Actions/Pokemon/PokemonActions'
+import { getAllPokemons, getPokemonsByType } from '../Redux/Actions/Pokemon/PokemonActions'
 
 import './AsideMenu.css'
 import styled from 'styled-components'
@@ -17,6 +17,24 @@ const Caption = styled.p`
 		color: var(--main-color);
     }
 `
+const Types = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	transition: .25s;
+	img {
+		margin: .5em;
+		height: 4em;
+		width: 4em;
+		object-fit: contain;
+		transition: .25s;
+		&:hover {
+			cursor: pointer;
+			transform: scale(1.25);
+		}
+	}
+`
 
 const AsideMenu = () => {
 
@@ -31,12 +49,18 @@ const AsideMenu = () => {
 
 		<input type="radio" name="accordion" id="cb1" />
 		<section class="box">
-			<label class="box-title" for="cb1">Pokemon List</label>
+			<label class="box-title" for="cb1">List</label>
 			<label class="box-close" for="acc-close"></label>
 			<div class="box-content">
-            	<Caption onClick={() => dispatch(getAllPokemons(151, 0))}>Generation 1</Caption>
-            	<Caption onClick={() => dispatch(getAllPokemons(100, 151))}>Generation 2</Caption>
-            	<Caption onClick={() => dispatch(getAllPokemons(135, 251))}>Generation 3</Caption>			
+            	<Caption onClick={() => dispatch(getAllPokemons(151, 0))}>
+					Generation 1
+				</Caption>
+            	<Caption onClick={() => dispatch(getAllPokemons(100, 151))}>
+					Generation 2
+				</Caption>
+            	<Caption onClick={() => dispatch(getAllPokemons(135, 251))}>
+					Generation 3
+				</Caption>			
 			</div>
 		</section>
 
@@ -45,9 +69,38 @@ const AsideMenu = () => {
 			<label class="box-title" for="cb2">Types</label>
 			<label class="box-close" for="acc-close"></label>
 			<div class="box-content">
-				<Caption>Grass</Caption>	
-				<Caption>Fire</Caption>
-				<Caption>Water</Caption>
+				<Types>
+					<div>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/3/3c/Pokémon_Bug_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('bug'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/0/09/Pokémon_Dark_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('dark'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/a/a6/Pokémon_Dragon_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('dragon'))}/>
+					</div>
+					<div>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/a/a9/Pokémon_Electric_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('electric'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/0/08/Pokémon_Fairy_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('fairy'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/b/be/Pokémon_Fighting_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('fighting'))}/>
+					</div>
+					<div>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/5/56/Pokémon_Fire_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('fire'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/e/e0/Pokémon_Flying_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('flying'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/a/a0/Pokémon_Ghost_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('ghost'))}/>
+					</div>
+					<div>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/f/f6/Pokémon_Grass_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('grass'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/8/8d/Pokémon_Ground_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('ground'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/8/88/Pokémon_Ice_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('ice'))}/>
+					</div>
+					<div>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/a/aa/Pokémon_Normal_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('normal'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Pokémon_Poison_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('poison'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Pokémon_Psychic_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('psychic'))}/>
+					</div>
+					<div>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/b/bb/Pokémon_Rock_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('rock'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/3/38/Pokémon_Steel_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('steel'))}/>
+					<img src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Pokémon_Water_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('water'))}/>
+					</div>
+				</Types>
 			</div>
 		</section>
 
