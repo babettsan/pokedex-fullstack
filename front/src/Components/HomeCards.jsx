@@ -58,7 +58,8 @@ const Card = styled.div`
         background: radial-gradient(circle, rgba(226,191,101,1) 0%, rgba(226,191,101,1) 35%, rgba(196,160,87,1) 100%);
     }
     &.flying {
-        background:#A98FF3;
+        background: rgb(163,145,255);
+        background: radial-gradient(circle, rgba(163,145,255,1) 0%, rgba(134,128,255,1) 50%, rgba(117,110,254,1) 100%);
     }
     &.psychic {
         background: rgb(249,85,135);
@@ -81,8 +82,11 @@ const Card = styled.div`
         background: radial-gradient(circle, rgba(118,61,255,1) 0%, rgba(111,53,252,1) 35%, rgba(74,0,255,1) 100%);
     }
     &.dark {
-        background: rgb(112,87,70);
-        background: radial-gradient(circle, rgba(112,87,70,1) 0%, rgba(112,87,70,1) 35%, rgba(79,62,50,1) 100%);
+        background: rgb(47,47,47);
+        background: radial-gradient(circle, rgba(47,47,47,1) 0%, rgba(24,24,24,1) 50%, rgba(0,0,0,1) 100%);
+        p {
+            color: white;
+        }
     }
     &.steel {
         background: rgb(183,183,206);
@@ -107,8 +111,18 @@ const Id = styled.p`
 const Name = styled.p`
     text-transform: capitalize;
 `
-const Type = styled.p`
-    text-transform: capitalize;
+const TypeImgContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+const TypeImg = styled.img`
+    height: 3em;
+    width: 3em;
+    object-fit: contain;
+    margin: 1em 1em 0 1em;
+    border-radius: 50%;
+    /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 `
 
 const HomeCards = ({ pokemon }) => {
@@ -176,14 +190,86 @@ const HomeCards = ({ pokemon }) => {
         }
     }
 
+    const selectTypeImage = (type) => {
+        switch (type.name) {
+            case 'normal': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/a/aa/Pokémon_Normal_Type_Icon.svg'
+            }
+            case 'fire': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/5/56/Pokémon_Fire_Type_Icon.svg'
+            }
+            case 'water': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/0/0b/Pokémon_Water_Type_Icon.svg'
+            }
+            case 'electric': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Pokémon_Electric_Type_Icon.svg'
+            }
+            case 'grass': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Pokémon_Grass_Type_Icon.svg'
+            }
+            case 'ice': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/8/88/Pokémon_Ice_Type_Icon.svg'
+            }
+            case 'fighting': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/b/be/Pokémon_Fighting_Type_Icon.svg'
+            }
+            case 'poison': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/c/c4/Pokémon_Poison_Type_Icon.svg'
+            }            
+            case 'ground': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Pokémon_Ground_Type_Icon.svg'
+            }
+            case 'flying': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Pokémon_Flying_Type_Icon.svg'
+            }
+            case 'psychic': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Pokémon_Psychic_Type_Icon.svg'
+            }
+            case 'bug': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Pokémon_Bug_Type_Icon.svg'
+            }
+            case 'rock': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Pokémon_Rock_Type_Icon.svg'
+            }            
+            case 'ghost': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Pokémon_Ghost_Type_Icon.svg'
+            }
+            case 'dragon': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Pokémon_Dragon_Type_Icon.svg'
+            }
+            case 'dark': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/0/09/Pokémon_Dark_Type_Icon.svg'
+            }       
+            case 'steel': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/3/38/Pokémon_Steel_Type_Icon.svg'
+            }
+            case 'fairy': {
+                return 'https://upload.wikimedia.org/wikipedia/commons/0/08/Pokémon_Fairy_Type_Icon.svg'
+            }
+            default:
+                return 'normal'
+        }
+    }
+
     return (
         <>
             <Link to={`/details/${pokemon.id}`} style={{ textDecoration: 'none', color: 'black' }} onClick={() => dispatch(getPokemonById(pokemon.id))}>
                 <Card key={pokemon.id} className={selectType(pokemon.types[0])}>
-                        <Pic src={pokemon.image} alt={pokemon.name} />
+                        {pokemon.image || pokemon.imageFrontDefault ? 
+                        <Pic src={pokemon.image ? pokemon.image : pokemon.imageFrontDefault} alt={pokemon.name} />
+                        :
+                        null
+                        }
                         <Id>#{pokemon.id}</Id>
                         <Name>{pokemon.name}</Name>
-                        <Type>{pokemon.types[0].name}</Type>
+                        <TypeImgContainer>
+                            <TypeImg src={selectTypeImage(pokemon.types[0])}/>
+                            {pokemon.types[1] ? 
+                            <TypeImg src={selectTypeImage(pokemon.types[1])}/>
+                            : 
+                            null
+                            }
+                        </TypeImgContainer>
                 </Card>
             </Link>
         </>

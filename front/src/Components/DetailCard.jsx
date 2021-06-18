@@ -56,7 +56,8 @@ const Card = styled.div`
         background: radial-gradient(circle, rgba(226,191,101,1) 0%, rgba(226,191,101,1) 35%, rgba(196,160,87,1) 100%);
     }
     &.flying {
-        background:#A98FF3;
+        background: rgb(163,145,255);
+        background: radial-gradient(circle, rgba(163,145,255,1) 0%, rgba(134,128,255,1) 50%, rgba(117,110,254,1) 100%);
     }
     &.psychic {
         background: rgb(249,85,135);
@@ -79,8 +80,11 @@ const Card = styled.div`
         background: radial-gradient(circle, rgba(118,61,255,1) 0%, rgba(111,53,252,1) 35%, rgba(74,0,255,1) 100%);
     }
     &.dark {
-        background: rgb(112,87,70);
-        background: radial-gradient(circle, rgba(112,87,70,1) 0%, rgba(112,87,70,1) 35%, rgba(79,62,50,1) 100%);
+        background: rgb(47,47,47);
+        background: radial-gradient(circle, rgba(47,47,47,1) 0%, rgba(24,24,24,1) 50%, rgba(0,0,0,1) 100%);
+        p {
+            color: white;
+        }
     }
     &.steel {
         background: rgb(183,183,206);
@@ -257,17 +261,26 @@ const DetailCard = ({ pokemon }) => {
                 <Title>#{pokemon.id} {pokemon.name} - {pokemon.types[0].name} Type</Title>
                 <ImgContainer>
                     <div>
-                        <Pic src={pokemon.image} alt={pokemon.name} />
+                        {pokemon.image || pokemon.imageFrontDefault ? 
+                        <Pic src={pokemon.image ? pokemon.image : pokemon.imageFrontDefault} alt={pokemon.name} />
+                        :
+                        null
+                        }
                     </div>
                     <div>
-                        <Pic src={pokemon.imageBack} alt={pokemon.name} />
+                        {pokemon.imageBack ? 
+                        <Pic src={pokemon.imageBack} alt={pokemon.name}/>
+                        :
+                        null
+                        }
                     </div>
                 </ImgContainer>
                 <DataContainer>
                 <div>
                     <Caption><Icon src='https://api.iconify.design/pixelarticons:human-height-alt.svg'/>Height {pokemon.height}</Caption>
                     <Caption><Icon src='https://api.iconify.design/fa-solid:weight-hanging.svg'/>Weight {pokemon.weight}</Caption>
-                    <Caption><Icon src='https://api.iconify.design/ant-design:star-filled.svg'/>Skills</Caption>
+                    <Caption><Icon src='https://api.iconify.design/ant-design:star-filled.svg'/>{pokemon.abilities[0] ? pokemon.abilities[0].ability.name : null}</Caption>
+                    <Caption><Icon src='https://api.iconify.design/ant-design:star-filled.svg'/>{pokemon.abilities[0] ? pokemon.abilities[1].ability.name : null}</Caption>
                 </div>
                 <div>
                     <Caption><Icon src='https://api.iconify.design/clarity:heart-solid.svg'/>HP_ {pokemon.hp}</Caption>

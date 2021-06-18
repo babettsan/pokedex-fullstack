@@ -19,6 +19,7 @@ const Content = styled.div`
 const Error = styled.div`
     display: flex;
     flex-direction: column;
+    margin-top: 4em;
 `
 const Image = styled.img`
     height: 25em;
@@ -43,12 +44,12 @@ const Team = () => {
         <div>
             <NavBar/>
             <Content>
-                {(pokemonTeam.length > 2) ? 
+                {(pokemonTeam.length > 0) ? 
                     <TeamCard pokemonTeam={pokemonTeam}/>
                 :
                     <Error>
                         <Image src='https://i.imgur.com/Gxquf3w.gif'/>
-                        <Message>You need to catch some Pokemon first ! <br/> Catch at least 3 and come back again.</Message>
+                        <Message>You need to catch one Pokemon first ! <br/> Catch at least 1 and come back again.</Message>
                     </Error>
                 }
             </Content>
