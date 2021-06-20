@@ -23,12 +23,12 @@ const Toggles = () => {
 
     return (
         <>
-            <div class="toggle-btn" id="_1st-toggle-btn" onClick={() => themeToggler()}>
+            <div className="toggle-btn" id="_1st-toggle-btn" onClick={() => themeToggler()}>
                 <input type="checkbox"/>
                 <span></span>
             </div>
         
-            <div class="toggle-btn" id="_2nd-toggle-btn" onClick={() => styleToggler()}>
+            <div className="toggle-btn" id="_2nd-toggle-btn" onClick={() => styleToggler()}>
                 <input type="checkbox"/>
                 <span></span>
             </div>

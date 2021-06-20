@@ -43,17 +43,17 @@ const AsideMenu = () => {
 	const dispatch = useDispatch()
 
     return (
-        <nav class="accordion arrows">
+        <nav className="accordion arrows">
 
-		<header class={(style === 'glass' ? 'box-glass' : 'box')}>
-			<label for="acc-close" class={(style === 'glass') ? 'box-title glass' : 'box-title'}>Settings</label>
+		<header className={(style === 'glass' ? 'box-glass' : 'box')}>
+			<label for="acc-close" className={(style === 'glass') ? 'box-title glass' : 'box-title'}>Settings</label>
 		</header>
 
 		<input type="radio" name="accordion" id="cb1" />
-		<section class="box">
-			<label class="box-title" for="cb1">List</label>
-			<label class="box-close" for="acc-close"></label>
-			<div class="box-content">
+		<section className="box">
+			<label className="box-title" for="cb1">List</label>
+			<label className="box-close" for="acc-close"></label>
+			<div className="box-content">
             	<Caption onClick={() => dispatch(getAllPokemons(151, 0))}>
 					Generation 1
 				</Caption>
@@ -67,10 +67,10 @@ const AsideMenu = () => {
 		</section>
 
 		<input type="radio" name="accordion" id="cb2" />
-		<section class="box">
-			<label class="box-title" for="cb2">Types</label>
-			<label class="box-close" for="acc-close"></label>
-			<div class="box-content">
+		<section className="box">
+			<label className="box-title" for="cb2">Types</label>
+			<label className="box-close" for="acc-close"></label>
+			<div className="box-content">
 				<Types>
 					<div>
 					<img src='https://upload.wikimedia.org/wikipedia/commons/3/3c/Pokémon_Bug_Type_Icon.svg' alt='' onClick={() => dispatch(getPokemonsByType('bug'))}/>
@@ -107,10 +107,10 @@ const AsideMenu = () => {
 		</section>
 
 		{/* <input type="radio" name="accordion" id="cb3" />
-		<section class="box">
-			<label class="box-title" for="cb3">Item 3</label>
-			<label class="box-close" for="acc-close"></label>
-			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
+		<section className="box">
+			<label className="box-title" for="cb3">Item 3</label>
+			<label className="box-close" for="acc-close"></label>
+			<div className="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
 		</section> */}
 
 		<input type="radio" name="accordion" id="acc-close" />
