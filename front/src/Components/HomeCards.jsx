@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getPokemonById } from '../Redux/Actions/Pokemon/PokemonActions'
 import { Link } from 'react-router-dom'
 
@@ -96,6 +96,11 @@ const Card = styled.div`
         background: rgb(214,133,173);
         background: radial-gradient(circle, rgba(214,133,173,1) 0%, rgba(214,133,173,1) 35%, rgba(210,97,153,1) 100%);
     }
+    &.glass {
+        background: rgba( 255, 255, 255, 0.25 );
+        backdrop-filter: blur( .4em );
+        -webkit-backdrop-filter: blur( .4em );
+    }
 `
 const Pic = styled.img`
     object-fit: contain;
@@ -121,72 +126,77 @@ const TypeImg = styled.img`
     object-fit: contain;
     margin: 1em 1em 0 1em;
     border-radius: 50%;
-    /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
     box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 `
 
 const HomeCards = ({ pokemon }) => {
 
+    const style = useSelector(state => state.themes.style)
+
     const dispatch = useDispatch()
     
     const selectType = (type) => {
-        switch (type.name) {
-            case 'normal': {
-                return 'normal'
+        if (style === 'glass') {
+            return 'glass'
+        } else {
+            switch (type.name) {
+                case 'normal': {
+                    return 'normal'
+                }
+                case 'fire': {
+                    return 'fire'
+                }
+                case 'water': {
+                    return 'water'
+                }
+                case 'electric': {
+                    return 'electric'
+                }
+                case 'grass': {
+                    return 'grass'
+                }
+                case 'ice': {
+                    return 'ice'
+                }
+                case 'fighting': {
+                    return 'fighting'
+                }
+                case 'poison': {
+                    return 'poison'
+                }            
+                case 'ground': {
+                    return 'ground'
+                }
+                case 'flying': {
+                    return 'flying'
+                }
+                case 'psychic': {
+                    return 'psychic'
+                }
+                case 'bug': {
+                    return 'bug'
+                }
+                case 'rock': {
+                    return 'rock'
+                }            
+                case 'ghost': {
+                    return 'ghost'
+                }
+                case 'dragon': {
+                    return 'dragon'
+                }
+                case 'dark': {
+                    return 'dark'
+                }       
+                case 'steel': {
+                    return 'steel'
+                }
+                case 'fairy': {
+                    return 'fairy'
+                }
+                default:
+                    return 'normal'
             }
-            case 'fire': {
-                return 'fire'
-            }
-            case 'water': {
-                return 'water'
-            }
-            case 'electric': {
-                return 'electric'
-            }
-            case 'grass': {
-                return 'grass'
-            }
-            case 'ice': {
-                return 'ice'
-            }
-            case 'fighting': {
-                return 'fighting'
-            }
-            case 'poison': {
-                return 'poison'
-            }            
-            case 'ground': {
-                return 'ground'
-            }
-            case 'flying': {
-                return 'flying'
-            }
-            case 'psychic': {
-                return 'psychic'
-            }
-            case 'bug': {
-                return 'bug'
-            }
-            case 'rock': {
-                return 'rock'
-            }            
-            case 'ghost': {
-                return 'ghost'
-            }
-            case 'dragon': {
-                return 'dragon'
-            }
-            case 'dark': {
-                return 'dark'
-            }       
-            case 'steel': {
-                return 'steel'
-            }
-            case 'fairy': {
-                return 'fairy'
-            }
-            default:
-                return 'normal'
         }
     }
 

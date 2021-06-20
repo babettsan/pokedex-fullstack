@@ -5,7 +5,8 @@ import {
     GET_POKEMONS_BY_TYPE,
     GET_POKEMON_BY_ID,
     CATCH_POKEMON,
-    DELETE_POKEMON
+    DELETE_POKEMON,
+    CATCH_ROULETTE
 } from '../Actions/Pokemon/PokemonActionTypes'
 
 const initialState = {
@@ -55,6 +56,12 @@ const pokemonReducer = (state = initialState, action) => {
             return {
                 ...state,
                 catchPokemon: [...state.catchPokemon, state.pokemon.find(p => p.id === action.payload)]
+            }
+        }
+        case CATCH_ROULETTE: {
+            return {
+                ...state,
+                catchPokemon: [...state.catchPokemon, state.pokemons.find(p => p.id === action.payload)]
             }
         }
         case DELETE_POKEMON: {

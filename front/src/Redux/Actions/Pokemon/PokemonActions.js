@@ -4,7 +4,8 @@ import {
     GET_POKEMON_BY_ID,
     CATCH_POKEMON,
     DELETE_POKEMON,
-    GET_POKEMONS_BY_TYPE
+    GET_POKEMONS_BY_TYPE,
+    CATCH_ROULETTE
 } from './PokemonActionTypes'
 
 import axios from 'axios'
@@ -119,6 +120,17 @@ export const catchPokemon = (id) => {
         dispatch(
             {
                 type: CATCH_POKEMON,
+                payload: parseInt(id)
+            }
+        )
+    }
+}
+
+export const catchRoulette = (id) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: CATCH_ROULETTE,
                 payload: parseInt(id)
             }
         )

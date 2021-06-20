@@ -23,7 +23,6 @@ export const GlobalStyle = createGlobalStyle`
 
         transition: .25s;
         background-color: ${props => props.theme.body};
-        filter: ${props => props.theme.grey};
         background-image: ${props => props.theme.backgroundImage};
 
         /* Scroll Bar */
@@ -71,11 +70,9 @@ export const darkTheme = {
 }
 export const bitsTheme = {
     blur: 'blur(0)',
-    grey: 'grayscale(0%)'
 }
 export const glassTheme = {
     blur: 'blur(0.5em)',
-    grey: 'grayscale(100%)'
 }
 
 export default GlobalStyle;

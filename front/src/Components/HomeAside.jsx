@@ -2,6 +2,8 @@ import React from 'react'
 import AsideCard from './AsideCard'
 import AsideMenu from './AsideMenu'
 
+import { useSelector } from 'react-redux'
+
 import styled from 'styled-components'
 
 const Aside = styled.aside`
@@ -19,6 +21,12 @@ const Aside = styled.aside`
     background: linear-gradient(90deg, rgba(189,15,27,1) 0%, rgba(189,15,27,1) 0%, rgba(189,15,52,1) 100%);
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
+    &.glass {
+        background: rgba( 255, 255, 255, 0.25 );
+        backdrop-filter: blur( .4em );
+        -webkit-backdrop-filter: blur( .4em );
+    }
+
     @media (max-width: 900px) {
         flex-direction: row;
         width: 100%;
@@ -30,8 +38,11 @@ const Aside = styled.aside`
 `
 
 const HomeAside = () => {
+
+    const style = useSelector(state => state.themes.style)
+
     return (
-        <Aside>
+        <Aside className={(style === 'glass' ? 'glass' : '')}>
             <AsideCard/>
             <AsideMenu/>
         </Aside>

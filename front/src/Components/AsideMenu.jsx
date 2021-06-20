@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getAllPokemons, getPokemonsByType } from '../Redux/Actions/Pokemon/PokemonActions'
 
 import './AsideMenu.css'
@@ -38,13 +38,15 @@ const Types = styled.div`
 
 const AsideMenu = () => {
 
+	const style = useSelector(state => state.themes.style)
+
 	const dispatch = useDispatch()
 
     return (
         <nav class="accordion arrows">
 
-		<header class="box">
-			<label for="acc-close" class="box-title">Settings</label>
+		<header class={(style === 'glass' ? 'box-glass' : 'box')}>
+			<label for="acc-close" class={(style === 'glass') ? 'box-title glass' : 'box-title'}>Settings</label>
 		</header>
 
 		<input type="radio" name="accordion" id="cb1" />

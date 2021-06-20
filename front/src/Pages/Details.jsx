@@ -33,6 +33,11 @@ const Button = styled.div`
     background: #CE1131;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     transition: .3s;
+    &.glass {
+        background: rgba( 255, 255, 255, 0.25 );
+        backdrop-filter: blur( .4em );
+        -webkit-backdrop-filter: blur( .4em );
+    }
     &:hover {
         transform: scale(1.10);
         cursor: pointer;
@@ -55,6 +60,8 @@ const Icon = styled.img`
 
 const Details = () => {
 
+    const style = useSelector(state => state.themes.style)
+
     const pokemon = useSelector(state => state.pokemon.pokemon)
     
     return (
@@ -64,7 +71,7 @@ const Details = () => {
                 <HomeAside/>
                 <Content>
                     <Link to='/home' style={{ textDecoration: 'none' }}>
-                    <Button>
+                    <Button className={(style === 'glass' ? 'glass' : '')}>
                     <Icon src='https://api.iconify.design/mdi:run-fast.svg'/>
                         <Caption>RUN</Caption>
                     </Button>

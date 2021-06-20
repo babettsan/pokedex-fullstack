@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useHistory } from "react-router-dom";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { catchPokemon } from '../Redux/Actions/Pokemon/PokemonActions'
 
 import Swal from 'sweetalert2'
@@ -94,6 +94,11 @@ const Card = styled.div`
         background: rgb(214,133,173);
         background: radial-gradient(circle, rgba(214,133,173,1) 0%, rgba(214,133,173,1) 35%, rgba(210,97,153,1) 100%);
     }
+    &.glass {
+        background: rgba( 255, 255, 255, 0.25 );
+        backdrop-filter: blur( .4em );
+        -webkit-backdrop-filter: blur( .4em );
+    }
     @media (max-width: 900px) {
         width: 90%;
     }
@@ -177,6 +182,8 @@ const Pokeball = styled.img`
 
 const DetailCard = ({ pokemon }) => {
 
+    const style = useSelector(state => state.themes.style)    
+
     const dispatch = useDispatch()
 
     const history = useHistory();
@@ -195,63 +202,67 @@ const DetailCard = ({ pokemon }) => {
     }
 
     const selectType = (type) => {
-        switch (type.name) {
-            case 'normal': {
-                return 'normal'
+        if (style === 'glass') {
+            return 'glass'
+        } else {
+            switch (type.name) {
+                case 'normal': {
+                    return 'normal'
+                }
+                case 'fire': {
+                    return 'fire'
+                }
+                case 'water': {
+                    return 'water'
+                }
+                case 'electric': {
+                    return 'electric'
+                }
+                case 'grass': {
+                    return 'grass'
+                }
+                case 'ice': {
+                    return 'ice'
+                }
+                case 'fighting': {
+                    return 'fighting'
+                }
+                case 'poison': {
+                    return 'poison'
+                }            
+                case 'ground': {
+                    return 'ground'
+                }
+                case 'flying': {
+                    return 'flying'
+                }
+                case 'psychic': {
+                    return 'psychic'
+                }
+                case 'bug': {
+                    return 'bug'
+                }
+                case 'rock': {
+                    return 'rock'
+                }            
+                case 'ghost': {
+                    return 'ghost'
+                }
+                case 'dragon': {
+                    return 'dragon'
+                }
+                case 'dark': {
+                    return 'dark'
+                }       
+                case 'steel': {
+                    return 'steel'
+                }
+                case 'fairy': {
+                    return 'fairy'
+                }
+                default:
+                    return 'normal'
             }
-            case 'fire': {
-                return 'fire'
-            }
-            case 'water': {
-                return 'water'
-            }
-            case 'electric': {
-                return 'electric'
-            }
-            case 'grass': {
-                return 'grass'
-            }
-            case 'ice': {
-                return 'ice'
-            }
-            case 'fighting': {
-                return 'fighting'
-            }
-            case 'poison': {
-                return 'poison'
-            }            
-            case 'ground': {
-                return 'ground'
-            }
-            case 'flying': {
-                return 'flying'
-            }
-            case 'psychic': {
-                return 'psychic'
-            }
-            case 'bug': {
-                return 'bug'
-            }
-            case 'rock': {
-                return 'rock'
-            }            
-            case 'ghost': {
-                return 'ghost'
-            }
-            case 'dragon': {
-                return 'dragon'
-            }
-            case 'dark': {
-                return 'dark'
-            }       
-            case 'steel': {
-                return 'steel'
-            }
-            case 'fairy': {
-                return 'fairy'
-            }
-            default:
-                return 'normal'
         }
     }
 
@@ -259,7 +270,7 @@ const DetailCard = ({ pokemon }) => {
         <>
         {pokemon?.map((pokemon) => (
             <Card key={pokemon.id} className={selectType(pokemon.types[0])}>
-                <Title>#{pokemon.id} {pokemon.name} - {pokemon.types[0].name} Type</Title>
+                <Title>#{pokemon.id} {pokemon.name} - {pokemon.types[0].name} {pokemon.types[1] ? `& ${pokemon.types[1].name}` : null} Type</Title>
                 <ImgContainer>
                     <div>
                         {pokemon.image || pokemon.imageFrontDefault ? 
