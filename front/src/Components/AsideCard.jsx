@@ -9,11 +9,15 @@ import styled from 'styled-components'
 const Container = styled.div`
     width: 100%;
     min-width: 20em;
-
     background: rgb(173,0,29);
     background: linear-gradient(90deg, rgba(173,0,29,1) 0%, rgba(206,17,49,1) 50%, rgba(173,0,29,1) 100%);
     border-radius: 2em;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    &.glass {
+        background: rgba( 255, 255, 255, 0.25 );
+        backdrop-filter: blur( .4em );
+        -webkit-backdrop-filter: blur( .4em );
+    }
     @media (max-width: 900px) {
         display: none;
     }
@@ -157,10 +161,12 @@ const AsideCard = () => {
 
     const dispatch = useDispatch()
 
+    const style = useSelector(state => state.themes.style)
+
     const pokemonCatch = useSelector(state => state.pokemon.catchPokemon)
 
     return (
-        <Container>
+        <Container className={(style === 'glass' ? 'glass' : '')}>
             <Item>
                 <DotContainer>
                     <BigDotContainer>

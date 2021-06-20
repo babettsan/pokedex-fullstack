@@ -8,11 +8,22 @@
 .box {
     color: var(--font-color);
 	position: relative;
-	background: var(--background-simple);
     height: 6em;
     transition: all .25s ease-in-out;
     border-radius: 1em;
     margin: .5em auto;
+	background: var(--background-simple);
+}
+.box-glass {
+	color: var(--font-color);
+	position: relative;
+	height: 6em;
+	transition: all .25s ease-in-out;
+	border-radius: 1em;
+    margin: .5em auto;
+	background: rgba( 255, 255, 255, 0.25 );
+	backdrop-filter: blur( .4em );
+	-webkit-backdrop-filter: blur( .4em );
 }
 .box::before {
     content: '';
@@ -40,6 +51,9 @@ header .box-title {
 	font-size: 1.4em;
 	color: white;
 	cursor: initial;
+}
+header .glass {
+	color: black !important;
 }
 .box-title {
     font-size: 1.2em;

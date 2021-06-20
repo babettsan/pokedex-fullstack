@@ -1,6 +1,7 @@
 import React from 'react'
 import Toggles from './Toggles'
 
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
@@ -12,6 +13,23 @@ const Nav = styled.nav`
     background: var(--main-color);
     border-bottom: .2em solid black;
     height: 6em;
+    &.glass {
+        background: rgba( 255, 255, 255, 0.25 );
+        backdrop-filter: blur( .4em );
+        -webkit-backdrop-filter: blur( .4em );
+        border: none;
+        border-radius: 2em;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        p {
+            color: black;
+        }
+        div {
+            &:hover {
+                text-shadow: none;
+                color: var(--main-color);
+            }
+        }
+    }
 `
 const IconContainer = styled.div`
     display: flex;
@@ -41,9 +59,12 @@ const Icon = styled.img`
 `
 
 const NavBar = () => {
+
+    const style = useSelector(state => state.themes.style)
+
     return (
         <>
-            <Nav>
+            <Nav className={(style === 'glass' ? 'glass' : '')}>
                 <Link to='/home' style={{ textDecoration: 'none'}}>
                     <IconContainer>
                         <Icon src='https://api.iconify.design/ant-design:home-filled.svg'/>
