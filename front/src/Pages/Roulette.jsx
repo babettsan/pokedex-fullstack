@@ -3,7 +3,7 @@ import NavBar from "../Components/NavBar";
 
 import { Wheel } from "react-custom-roulette";
 import { useDispatch, useSelector } from "react-redux";
-import { catchRoulette, getAllPokemons } from '../Redux/Actions/Pokemon/PokemonActions'
+import { catchRoulette, getRoulettePokemons } from '../Redux/Actions/Pokemon/PokemonActions'
 
 import Swal from 'sweetalert2'
 import styled from "styled-components";
@@ -17,128 +17,140 @@ const LoadingImg = styled.img`
 `
 const Content = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+const Caption = styled.p`
+  color: var(--font-color);
+  font-size: 1.4em;
+  border: .2em solid var(--font-color);
+  border-radius: 1em;
+  padding: 1em;
+`
+const RouletteContainer = styled.div`
+  display: flex;
   justify-content: center;
   flex-direction: row;
-  margin-top: 4em;
   width: 100vw;
 `;
+const WheelContainer = styled.div`
+  background: white;
+  border-radius: 50%;
+`
 const ButtonContainer = styled.div`
   display:flex;
   flex-direction: column;
   align-items: center;
+  border: .3em solid var(--font-color);
+  border-radius: 4em;
+  margin-left: 1em;
 `
-const Try = styled.button`
-  margin: 0 0 1em 0;
-  height: 30em;
+const Try = styled.img`
+  height: 4em;
   width: 4em;
-`
-// const Catch = styled.button`
-//   height: 5em;
-//   width: 4em;
-// `
-// Catch Button
-const CatchContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-    align-items: center;
-    transition: .3s;
-    @keyframes move-to-the-side {
+    &:hover {
+        cursor: pointer;
+    }
+    &.roulette {
+      @keyframes move-vertical {
         0% {
-            transform: translateX(0);
+            transform: translateY(0);
         }
         50% {
-            transform: translateX(1em);
+            transform: translateY(40em);
         }
         100% {
-            transform: translateX(0);
+            transform: translateY(0);
         }
     }
-    &:hover {
-        animation: move-to-the-side 750ms infinite;
-        cursor: pointer;
-        p {
-            visibility: visible;
-            text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-        }
+    animation: move-vertical 2000ms infinite;
     }
 `
-const CatchText = styled.p`
-    visibility: hidden;
-    font-size: 1.4em;
-    color: black !important;
-`
-const Pokeball = styled.img`
-    width: 8em;
-    height: 8em;
-    align-self: center;
-`
-// Catch Button
 
 const Roulette = () => {
 
   const dispatch = useDispatch()
-  const pokemons = useSelector(state => state.pokemon.pokemons)
-  const [mustSpin, setMustSpin] = useState()
+  const pokemons = useSelector(state => state.pokemon.roulette)
+  const coins = useSelector(state => state.pokemon.coins)
+  const loading = useSelector(state => state.pokemon.loading)
+  const [active, setActive] = useState(false)
+  const [mustSpin, setMustSpin] = useState(false)
 
   useEffect(() => {
     if (pokemons.length > 0) return
-    dispatch(getAllPokemons(151, 0))
+    dispatch(getRoulettePokemons())
   }, [dispatch, pokemons])
 
-  var data = [];
+  const random = 15
 
   const handleClick = () => {
-    Swal.fire({
-      title: `${data[10].option}`,
-      text: `Fate has given you this pokemon, do you want to accept it and read what fate has in store for you?`,
-      imageUrl: `${data[10].image}`,
-      imageAlt: 'pokeball',
+    if (coins === 0) {
+      Swal.fire({
+        title: `What a bad luck...`,
+        text: `Get some coins capturing Pokemons!`,
+        imageUrl: `https://i.imgur.com/JCXuiqU.gif`,
+        imageAlt: 'pokeball',
         width: 400,
         position: 'center',
-    })
-    dispatch(catchRoulette(data[10].id))
-    setMustSpin(false)
+      })
+      return
+    }
+    setMustSpin(true)
+    setActive(true)
+    setTimeout(() => {
+      setActive(false)
+    }, 1900)
+    setTimeout(() => {
+      Swal.fire({
+        title: `${pokemons[random].name}`,
+        text: `Fate has given you this pokemon, do you want to accept it and read what fate has in store for you?`,
+        imageUrl: pokemons[random].image ? pokemons[random].image : pokemons[random].imageFrontDefault,
+        imageAlt: 'pokeball',
+        width: 400,
+        position: 'center',
+      })
+      dispatch(catchRoulette(pokemons[random].id))
+      setMustSpin(false)
+    }, 11000)
+    setTimeout(() => {
+      dispatch(getRoulettePokemons())
+    }, 13000)
   }
   
-  if (pokemons.length === 0) {
+  if (loading) {
     return (
       <>
       <NavBar/>
-      <Content>
+      <RouletteContainer>
         <LoadingImg src='https://i.imgur.com/hN8NZYh.gif'/>                
-      </Content>
+      </RouletteContainer>
       </>
     )
   } else {
-    for (let p =0; p<30; p++) {
-      let a = Math.floor(Math.random() * (150 - 1)) + 1;
-      data.push({option:pokemons[a].name, id: pokemons[a].id, image: pokemons[a].image});
-    }
     return (
       <>
         <NavBar/>
         <Content>
-          <div>
-            <Wheel
-              mustStartSpinning={mustSpin}
-              prizeNumber={10}
-              data={data}
-              backgroundColors={[
+          <Caption>Test your luck !</Caption>
+          <RouletteContainer>
+            <WheelContainer>
+              <Wheel
+                mustStartSpinning={mustSpin}
+                prizeNumber={random}
+                data={pokemons}
+                backgroundColors={[
                   "#CE1131",
                   "#CE1131"
-              ]}
-              textColors={["#ffffff"]}
-              />
-          </div>
-          <ButtonContainer>
-            <Try onClick={()=> setMustSpin(true)}> Try </Try>
-            <CatchContainer onClick={()=> handleClick()}>
-                      <CatchText>Catch</CatchText>
-                      <Pokeball src='https://i.imgur.com/q5o0NkA.png'/>
-                      <CatchText>Now!!</CatchText>
-            </CatchContainer>
-          </ButtonContainer>
+                ]}
+                textColors={["#ffffff"]}
+                />
+            </WheelContainer>
+            <ButtonContainer>
+              <Try className={(active) ? 'roulette' : ''} src='https://i.imgur.com/q5o0NkA.png' onClick={()=> handleClick()}/>
+            </ButtonContainer>
+          </RouletteContainer>
+          <Caption>Coins: {coins}</Caption>
         </Content>
       </>
     );
