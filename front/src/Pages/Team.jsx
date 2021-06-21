@@ -31,7 +31,7 @@ const Message = styled.p`
     margin: 4em;
     font-size: 1.4em;
     line-height: 2em;
-    border: .2em solid black;
+    border: .2em solid var(--font-color);
     padding: 4em;
     border-radius: 1em;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
