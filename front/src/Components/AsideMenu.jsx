@@ -62,7 +62,25 @@ const AsideMenu = () => {
 				</Caption>
             	<Caption onClick={() => dispatch(getAllPokemons(135, 251))}>
 					Generation 3
-				</Caption>			
+				</Caption>
+				<Caption onClick={() => dispatch(getAllPokemons(107, 386))}>
+					Generation 4
+				</Caption>	
+				<Caption onClick={() => dispatch(getAllPokemons(156, 493))}>
+					Generation 5
+				</Caption>
+				<Caption onClick={() => dispatch(getAllPokemons(72, 649))}>
+					Generation 6
+				</Caption>
+				<Caption onClick={() => dispatch(getAllPokemons(88, 721))}>
+					Generation 7
+				</Caption>
+				<Caption onClick={() => dispatch(getAllPokemons(88, 810))}>
+					Generation 8
+				</Caption>
+				<Caption onClick={() => dispatch(getAllPokemons(500, 898))}>
+					Specials
+				</Caption>
 			</div>
 		</section>
 
