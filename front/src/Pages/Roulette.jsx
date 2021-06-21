@@ -122,6 +122,10 @@ const Icon = styled.img`
   width: 4em;
 `
 
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const Roulette = () => {
 
   const dispatch = useDispatch()
@@ -137,7 +141,7 @@ const Roulette = () => {
   })
   const clickSound = new Howl({
     src: [ClickSound],
-    volume: 0.30
+    volume: 0.25
   })
 
   useEffect(() => {
@@ -167,8 +171,8 @@ const Roulette = () => {
     }, 1900)
     setTimeout(() => {
       Swal.fire({
-        title: `${pokemons[random].name}`,
-        text: `Fate has given you this pokemon, do you want to accept it and read what fate has in store for you?`,
+        title: capitalize(pokemons[random].name),
+        text: `Fate has given you this ${pokemons[random].types[0].name} Pokemon, do you want to accept it and read what fate has in store for you?`,
         imageUrl: pokemons[random].image ? pokemons[random].image : pokemons[random].imageFrontDefault,
         imageAlt: 'pokeball',
         width: 400,

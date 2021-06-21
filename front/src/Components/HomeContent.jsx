@@ -4,6 +4,8 @@ import HomeCards from '../Components/HomeCards'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllPokemons } from '../Redux/Actions/Pokemon/PokemonActions'
 
+import ClickSound from '../Sounds/Click.mp3'
+import { Howl } from 'howler'
 import styled from 'styled-components'
 
 const NumbersContainer = styled.ul`
@@ -12,6 +14,11 @@ const NumbersContainer = styled.ul`
     display: flex;
     list-style: none;
     padding: 0;
+    margin-top: -2em;
+    @media (max-width: 900px) {
+        margin-top: 0;
+    }
+    
 `
 const PageNumbers = styled.li`
     color: var(--font-color);
@@ -96,6 +103,42 @@ const LoadingImg = styled.img`
     border-radius: 50%;
     align-self: center;
 `
+const UpButtonContainer = styled.div`
+    background: #ff1744;
+    border-radius: 50%;
+    align-self: center;
+    padding: -6em;
+    visibility: hidden;
+    @keyframes static-vertical {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(.5em);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    animation: static-vertical 1000ms infinite;
+    &.glass {
+        background: rgba( 255, 255, 255, 0.25 );
+        backdrop-filter: blur( .4em );
+        -webkit-backdrop-filter: blur( .4em );
+    }
+    &:hover {
+        cursor: pointer;
+    }
+    @media (max-width: 900px) {
+        visibility: visible;
+        padding: 1em;
+    }
+`
+const UpButton = styled.img`
+    height: 2.5em;
+    width: 2.5em;
+    object-fit: contain;
+`
 
 const HomeContent = () => {
 
@@ -111,6 +154,11 @@ const HomeContent = () => {
         if (pokemons.length > 0) return
         dispatch(getAllPokemons(151, 0))
     }, [dispatch, pokemons])
+
+    const clickSound = new Howl({
+        src: [ClickSound],
+        volume: 0.15
+      })
 
     // ******************** Paginado ********************
 
@@ -202,8 +250,12 @@ const HomeContent = () => {
                     ))}
                 </Content>
             </Container>
+            
+            <UpButtonContainer className={(style === 'glass') ? 'glass' : ''} onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+                <UpButton src='https://api.iconify.design/ant-design:caret-up-filled.svg'/>
+            </UpButtonContainer>
 
-            <NumbersContainer className={(style === 'glass') ? 'glass' : ''}>
+            <NumbersContainer className={(style === 'glass') ? 'glass' : ''} onClick={() => clickSound.play()}>
                 <Button className={(style === 'glass') ? 'glass' : ''} onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Prev</Button>
                 {pageDecrementBtn}
                 {renderPageNumbers}
