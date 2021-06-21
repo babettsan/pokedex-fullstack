@@ -176,7 +176,7 @@ const TeamCard = ({ pokemonTeam }) => {
 
     const deleteSound = new Howl({
         src: [DeleteSound],
-        volume: 0.25
+        volume: 0.30
     })
 
     const handleDelete = (id) => {

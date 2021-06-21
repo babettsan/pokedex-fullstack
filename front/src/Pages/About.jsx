@@ -14,9 +14,10 @@ const Content = styled.div`
 `
 const Title = styled.p`
     color: var(--font-color);
-    font-size: 2em;
+    font-size: 1.8em;
     padding: 2em;
     text-align: center;
+    border-radius: 2em;
 `
 const ProfileContainer = styled.div`
     display: flex;
@@ -71,6 +72,10 @@ const Icon = styled.img`
     height: 3.5em;
     width: 3.5em;
     margin: 0 .5em;
+    transition: .25s;
+    &:hover {
+        transform: scale(1.20);
+    }
 `
 
 const About = () => {
