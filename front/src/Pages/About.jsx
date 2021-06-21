@@ -30,6 +30,10 @@ const Profile = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 0 1em;
+    transition: .35s;
+    &:hover {
+        transform: scale(1.10)
+    }
 `
 const Caption = styled.p`
     color: var(--font-color);

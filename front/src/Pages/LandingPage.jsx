@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import Opening from '../Sounds/Opening.mp3'
+import { Howl } from 'howler'
 import styled from 'styled-components'
 
 const Landing = styled.div`
@@ -40,11 +42,17 @@ const Img = styled.img`
 `
 
 const LandingPage = () => {
+    
+    const openingSound = new Howl({
+        src: [Opening],
+        volume: 0.40
+    })
+    
     return (
         <>
             <Landing>
                 <Link to='/home' style={{ textDecoration: 'none' }}>
-                <Container>
+                <Container onClick={() => openingSound.play()}>
                     <Img/>
                     <Title>Enter</Title>
                 </Container>

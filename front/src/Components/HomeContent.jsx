@@ -30,6 +30,13 @@ const PageNumbers = styled.li`
         background-color: #ff1744;
         color: #000000;
     }
+    &.glass {
+        &.active {
+            background-color: rgba( 255, 255, 255, 0.25 );
+            backdrop-filter: blur( .4em );
+            -webkit-backdrop-filter: blur( .4em );
+        }
+    }
     @media (max-width: 900px) {
         display: none;
     }
@@ -44,6 +51,13 @@ const Button = styled.button`
     color: var(--font-color);
     cursor: pointer;
     transition: all .3s linear;
+    &.glass {
+        &:hover {
+            background: rgba( 255, 255, 255, 0.25 );
+            backdrop-filter: blur( .4em );
+            -webkit-backdrop-filter: blur( .4em );
+        }
+    }
     &:hover {
         background: #ff1744;
         color: #000000;
@@ -88,6 +102,8 @@ const HomeContent = () => {
     const pokemons = useSelector(state => state.pokemon.pokemons)
 
     const loading = useSelector(state => state.pokemon.loading)
+
+    const style = useSelector(state => state.themes.style)
 
     const dispatch = useDispatch()
 
@@ -144,20 +160,22 @@ const HomeContent = () => {
 
     let pageIncrementBtn = null
     if (pages.length > maxPageNumberLimit) {
-        pageIncrementBtn = <Button onClick={handleNextBtn}>&hellip;</Button>
+        pageIncrementBtn = <Button className={(style === 'glass') ? 'glass' : ''} onClick={handleNextBtn}>&hellip;</Button>
     }
 
     let pageDecrementBtn = null
     if (minPageNumberLimit >= 1) {
-        pageDecrementBtn = <Button onClick={handlePrevBtn}>&hellip;</Button>
+        pageDecrementBtn = <Button className={(style === 'glass') ? 'glass' : ''} onClick={handlePrevBtn}>&hellip;</Button>
     }
 
     // Renderizamos los números de las páginas como (<Li>)
     const renderPageNumbers = pages.map(number => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+            const active = currentPage === number ? 'active' : null
+            const glass = (style === 'glass') ? 'glass' : ''
             return (
                 <PageNumbers
-                    className={currentPage === number ? 'active' : null} key={number} id={number} onClick={handleClick}>
+                    className={`${active} ${glass}`} key={number} id={number} onClick={handleClick}>
                     {number}
                 </PageNumbers>
             )
@@ -185,12 +203,12 @@ const HomeContent = () => {
                 </Content>
             </Container>
 
-            <NumbersContainer>
-                <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Prev</Button>
+            <NumbersContainer className={(style === 'glass') ? 'glass' : ''}>
+                <Button className={(style === 'glass') ? 'glass' : ''} onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Prev</Button>
                 {pageDecrementBtn}
                 {renderPageNumbers}
                 {pageIncrementBtn}
-                <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Next</Button>
+                <Button className={(style === 'glass') ? 'glass' : ''} onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Next</Button>
             </NumbersContainer>
 
             </>

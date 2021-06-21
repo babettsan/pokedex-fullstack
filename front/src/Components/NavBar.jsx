@@ -4,6 +4,8 @@ import Toggles from './Toggles'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import Click from '../Sounds/Click.mp3'
+import { Howl } from 'howler'
 import styled from 'styled-components'
 
 const Nav = styled.nav`
@@ -62,30 +64,35 @@ const NavBar = () => {
 
     const style = useSelector(state => state.themes.style)
 
+    const click = new Howl({
+        src: [Click],
+        volume: 0.25
+    })
+
     return (
         <>
             <Nav className={(style === 'glass' ? 'glass' : '')}>
                 <Link to='/home' style={{ textDecoration: 'none'}}>
-                    <IconContainer>
+                    <IconContainer onClick={() => click.play()}>
                         <Icon src='https://api.iconify.design/ant-design:home-filled.svg'/>
                         <Caption>Home</Caption>
                     </IconContainer>
                 </Link>
                 <Link to='/team' style={{ textDecoration: 'none'}}>
-                    <IconContainer>
+                    <IconContainer onClick={() => click.play()}>
                         <Icon src='https://i.imgur.com/q5o0NkA.png'/>
                         <Caption>Your Team</Caption>
                     </IconContainer>
                 </Link>
                 <Link to='roulette' style={{ textDecoration: 'none'}}>
-                    <IconContainer>
+                    <IconContainer onClick={() => click.play()}>
                         <Icon src='https://api.iconify.design/ion:dice-sharp.svg'/>
                         <Caption>PokeRoulette</Caption>
                     </IconContainer>
                 </Link>
                 {/* <Caption>Create Pokemon</Caption> */}
                 <Link to='/about' style={{ textDecoration: 'none'}}>
-                    <IconContainer>
+                    <IconContainer onClick={() => click.play()}>
                         <Icon src='https://api.iconify.design/heroicons-solid:users.svg'/>
                         <Caption>About Us</Caption>
                     </IconContainer>

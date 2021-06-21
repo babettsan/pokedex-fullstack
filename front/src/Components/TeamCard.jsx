@@ -4,6 +4,8 @@ import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux'
 import { deletePokemon } from '../Redux/Actions/Pokemon/PokemonActions'
 
+import DeleteSound from '../Sounds/Delete.mp3'
+import { Howl } from 'howler'
 import styled from 'styled-components'
 
 const Team = styled.div`
@@ -21,7 +23,7 @@ const Card = styled.div`
     flex-direction: column;
     border-radius: 2em;
     width: 25vw;
-    height: 40.5em;
+    height: 41.5em;
     padding: 2em;
     margin: 2em;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -172,6 +174,11 @@ const TeamCard = ({ pokemonTeam }) => {
 
     const dispatch = useDispatch()
 
+    const deleteSound = new Howl({
+        src: [DeleteSound],
+        volume: 0.25
+    })
+
     const handleDelete = (id) => {
         dispatch(deletePokemon(id))
         Swal.fire({
@@ -182,6 +189,7 @@ const TeamCard = ({ pokemonTeam }) => {
             width: 500,
             position: 'top'
         })
+        deleteSound.play()
     }
 
     const selectType = (type) => {
