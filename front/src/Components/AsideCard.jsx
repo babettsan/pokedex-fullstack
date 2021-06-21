@@ -73,9 +73,9 @@ const PokemonContainer = styled.div`
     width: 50%;
     min-width: 12em;
     height: 12em;
-    padding: .75em;
-    border-radius: 1em;
-    background: #474747;
+    padding: .50em;
+    border-radius: 1.5em;
+    background: #2b2b2b;
     margin: auto;
     clip-path: polygon(0 0, 100% 0, 100% 20%, 100% 80%, 100% 100%, 20% 100%, 0% 80%, 0% 20%);
 `

@@ -51,6 +51,13 @@ const InfoContainer = styled.div`
     border-radius: 2em;
     margin: 2em;
     padding: 2em;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    &.glass {
+        background: rgba( 255, 255, 255, 0.25 );
+        backdrop-filter: blur( .4em );
+        -webkit-backdrop-filter: blur( .4em );
+        border: .2em solid transparent;
+    }
 `
 const Links = styled.div`
     display: flex;
@@ -65,6 +72,7 @@ const Icon = styled.img`
 const About = () => {
 
     const theme = useSelector(state => state.themes.theme)
+    const style = useSelector(state => state.themes.style)
 
     return (
         <div>
@@ -74,7 +82,7 @@ const About = () => {
                 <ProfileContainer>
                 <Profile>
                     <Photo src='https://i.imgur.com/tiCBFNh.png'/>
-                    <InfoContainer>
+                    <InfoContainer className={(style === 'glass') ? 'glass' : ''}>
                         <Caption>Guillermo Bravo</Caption>
                         <Links>
                         <a href='https://www.linkedin.com/in/guillermo-bravo-294499208/' target="blank"><Icon src='https://api.iconify.design/logos:linkedin-icon.svg'/></a>
@@ -85,7 +93,7 @@ const About = () => {
                 </Profile>
                 <Profile>
                     <Photo src='https://i.imgur.com/69rn4sK.png'/>
-                    <InfoContainer>
+                    <InfoContainer className={(style === 'glass') ? 'glass' : ''}>
                         <Caption>Barbara Sanchez</Caption>
                         <Links>
                         <a href='https://www.linkedin.com/in/barbara-n-s-624b09116/' target="blank"><Icon src='https://api.iconify.design/logos:linkedin-icon.svg'/></a>

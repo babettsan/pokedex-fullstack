@@ -21,12 +21,26 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
 `
+const CaptionContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  border-radius: 1em;
+  border: .3em solid var(--font-color);
+  padding: 1.2em;
+  margin-left: -5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  &.glass {
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( .4em );
+    -webkit-backdrop-filter: blur( .4em );
+    border: .3em solid transparent;
+  }
+`
 const Caption = styled.p`
   color: var(--font-color);
   font-size: 1.4em;
-  border: .2em solid var(--font-color);
-  border-radius: 1em;
-  padding: 1em;
 `
 const RouletteContainer = styled.div`
   display: flex;
@@ -37,14 +51,27 @@ const RouletteContainer = styled.div`
 const WheelContainer = styled.div`
   background: white;
   border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  &.glass {
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( .4em );
+    -webkit-backdrop-filter: blur( .4em );
+  }
 `
-const ButtonContainer = styled.div`
+const TryContainer = styled.div`
   display:flex;
   flex-direction: column;
   align-items: center;
   border: .3em solid var(--font-color);
   border-radius: 4em;
   margin-left: 1em;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  &.glass {
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( .4em );
+    -webkit-backdrop-filter: blur( .4em );
+    border: .3em solid transparent;
+  }
 `
 const Try = styled.img`
   height: 4em;
@@ -67,6 +94,15 @@ const Try = styled.img`
     animation: move-vertical 2000ms infinite;
     }
 `
+const IconContainer = styled.div`
+  background: gold;
+  border-radius: 50%;
+  margin-right: 1em;
+`
+const Icon = styled.img`
+  height: 4em;
+  width: 4em;
+`
 
 const Roulette = () => {
 
@@ -74,6 +110,7 @@ const Roulette = () => {
   const pokemons = useSelector(state => state.pokemon.roulette)
   const coins = useSelector(state => state.pokemon.coins)
   const loading = useSelector(state => state.pokemon.loading)
+  const style = useSelector(state => state.themes.style)
   const [active, setActive] = useState(false)
   const [mustSpin, setMustSpin] = useState(false)
 
@@ -132,25 +169,47 @@ const Roulette = () => {
       <>
         <NavBar/>
         <Content>
-          <Caption>Test your luck !</Caption>
+          <CaptionContainer className={(style === 'glass') ? 'glass' : ''}>
+            <Caption>Test your luck !</Caption>
+          </CaptionContainer>
           <RouletteContainer>
-            <WheelContainer>
+
+            <WheelContainer className={(style === 'glass') ? 'glass' : ''}>
               <Wheel
                 mustStartSpinning={mustSpin}
                 prizeNumber={random}
                 data={pokemons}
                 backgroundColors={[
                   "#CE1131",
-                  "#CE1131"
+                  "black"
                 ]}
                 textColors={["#ffffff"]}
+                outerBorderColor={'black'}
+                outerBorderWidth={6}
+                innerRadius={10}
+                innerBorderColor={'white'}
+                innerBorderWidth={5}
+                radiusLineColor={'black'}
+                radiusLineWidth={5}
+                fontSize={18}
                 />
             </WheelContainer>
-            <ButtonContainer>
+
+            <TryContainer className={(style === 'glass') ? 'glass' : ''}>
               <Try className={(active) ? 'roulette' : ''} src='https://i.imgur.com/q5o0NkA.png' onClick={()=> handleClick()}/>
-            </ButtonContainer>
+            </TryContainer>
+
           </RouletteContainer>
-          <Caption>Coins: {coins}</Caption>
+
+          <CaptionContainer className={(style === 'glass') ? 'glass' : ''}>
+            <IconContainer>
+              <Icon src='https://api.iconify.design/la:coins.svg'/>
+            </IconContainer>
+            <Caption>
+              Coins: {coins}          
+            </Caption>
+          </CaptionContainer>
+
         </Content>
       </>
     );

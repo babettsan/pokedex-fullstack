@@ -34,11 +34,19 @@ const Message = styled.p`
     border: .2em solid black;
     padding: 4em;
     border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    &.glass {
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( .4em );
+    -webkit-backdrop-filter: blur( .4em );
+    border: .2em solid transparent;
+  }
 `
 
 const Team = () => {
 
     const pokemonTeam = useSelector(state => state.pokemon.catchPokemon)
+    const style = useSelector(state => state.themes.style)
 
     return (
         <div>
@@ -49,7 +57,7 @@ const Team = () => {
                 :
                     <Error>
                         <Image src='https://i.imgur.com/Gxquf3w.gif'/>
-                        <Message>You need to catch one Pokemon first ! <br/> Catch at least 1 and come back again.</Message>
+                        <Message className={(style === 'glass') ? 'glass' : ''}>You need to catch one Pokemon first ! <br/> Catch at least 1 and come back again.</Message>
                     </Error>
                 }
             </Content>
