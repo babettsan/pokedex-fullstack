@@ -6,6 +6,8 @@ import DetailCard from '../Components/DetailCard'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+import Click from '../Sounds/Click.mp3'
+import { Howl } from 'howler'
 import styled from 'styled-components'
 
 const Divider = styled.div`
@@ -63,6 +65,11 @@ const Details = () => {
     const style = useSelector(state => state.themes.style)
 
     const pokemon = useSelector(state => state.pokemon.pokemon)
+
+    const clickSound = new Howl({
+        src: [Click],
+        volume: 0.25
+    })
     
     return (
         <div>
@@ -71,7 +78,7 @@ const Details = () => {
                 <HomeAside/>
                 <Content>
                     <Link to='/home' style={{ textDecoration: 'none' }}>
-                    <Button className={(style === 'glass' ? 'glass' : '')}>
+                    <Button className={(style === 'glass' ? 'glass' : '')} onClick={() => clickSound.play()}>
                     <Icon src='https://api.iconify.design/mdi:run-fast.svg'/>
                         <Caption>RUN</Caption>
                     </Button>

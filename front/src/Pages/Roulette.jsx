@@ -5,6 +5,9 @@ import { Wheel } from "react-custom-roulette";
 import { useDispatch, useSelector } from "react-redux";
 import { catchRoulette, getRoulettePokemons } from '../Redux/Actions/Pokemon/PokemonActions'
 
+import RouletteSound from '../Sounds/Roulette.mp3'
+import ClickSound from '../Sounds/Click.mp3'
+import { Howl } from 'howler'
 import Swal from 'sweetalert2'
 import styled from "styled-components";
 
@@ -24,12 +27,14 @@ const Content = styled.div`
 const CaptionContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   border-radius: 1em;
   border: .3em solid var(--font-color);
-  padding: 1.2em;
+  padding: 1em;
   margin-left: -5em;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  width: 40em;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   &.glass {
     background: rgba( 255, 255, 255, 0.25 );
@@ -76,23 +81,36 @@ const TryContainer = styled.div`
 const Try = styled.img`
   height: 4em;
   width: 4em;
-    &:hover {
-        cursor: pointer;
+  @keyframes static-vertical {
+    0% {
+        transform: translateY(0);
     }
-    &.roulette {
-      @keyframes move-vertical {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(40em);
-        }
-        100% {
-            transform: translateY(0);
-        }
+    50% {
+        transform: translateY(.5em);
+    }
+    100% {
+        transform: translateY(0);
+    }
+  }
+  animation: static-vertical 1000ms infinite;    
+
+  &:hover {
+      cursor: pointer;
+  }
+  &.roulette {
+    @keyframes move-vertical {
+      0% {
+          transform: translateY(0);
+      }
+      50% {
+          transform: translateY(40em);
+      }
+      100% {
+          transform: translateY(0);
+      }
     }
     animation: move-vertical 2000ms infinite;
-    }
+  }
 `
 const IconContainer = styled.div`
   background: gold;
@@ -113,6 +131,14 @@ const Roulette = () => {
   const style = useSelector(state => state.themes.style)
   const [active, setActive] = useState(false)
   const [mustSpin, setMustSpin] = useState(false)
+  const rouletteSound = new Howl({
+    src: [RouletteSound],
+    volume: 0.30
+  })
+  const clickSound = new Howl({
+    src: [ClickSound],
+    volume: 0.30
+  })
 
   useEffect(() => {
     if (pokemons.length > 0) return
@@ -122,6 +148,7 @@ const Roulette = () => {
   const random = 15
 
   const handleClick = () => {
+    clickSound.play()
     if (coins === 0) {
       Swal.fire({
         title: `What a bad luck...`,
@@ -147,6 +174,7 @@ const Roulette = () => {
         width: 400,
         position: 'center',
       })
+      rouletteSound.play()
       dispatch(catchRoulette(pokemons[random].id))
       setMustSpin(false)
     }, 11000)

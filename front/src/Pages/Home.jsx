@@ -3,6 +3,7 @@ import NavBar from '../Components/NavBar'
 import HomeAside from '../Components/HomeAside'
 import HomeContent from '../Components/HomeContent'
 
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 const Divider = styled.div`
@@ -13,10 +14,23 @@ const Divider = styled.div`
     }
 `
 const Caption = styled.p`
-    padding-top: 1em;
-    font-size: 1.6em;
-    color: var(--font-color);
-    text-align: center;
+  color: var(--font-color);
+  text-align: center;
+  font-size: 1.4em;
+  border-radius: 1em;
+  border: .2em solid var(--font-color);
+  width: 50%;
+  align-self: center;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  &.glass {
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( .4em );
+    -webkit-backdrop-filter: blur( .4em );
+    border: .2em solid transparent;
+  }
 `
 const Content = styled.div`
     display: flex;
@@ -24,6 +38,9 @@ const Content = styled.div`
 `
 
 const Home = () => {
+
+    const style = useSelector(state => state.themes.style)
+
     return (
         <div>
             <NavBar/>
@@ -31,7 +48,7 @@ const Home = () => {
             <Divider>
                 <HomeAside key='home-aside'/>
                 <Content>
-                    <Caption>Some wild Pokemon have appeared!</Caption>
+                    <Caption className={(style === 'glass') ? 'glass' : ''}>Some wild Pokemon have appeared!</Caption>
                     <HomeContent key='home-content'/>
                 </Content>
             </Divider>

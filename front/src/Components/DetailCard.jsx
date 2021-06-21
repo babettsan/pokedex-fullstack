@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { catchPokemon } from '../Redux/Actions/Pokemon/PokemonActions'
 
+import Catch from '../Sounds/Catch.mp3'
+import { Howl } from 'howler'
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
 
@@ -188,6 +190,11 @@ const DetailCard = ({ pokemon }) => {
 
     const history = useHistory();
 
+    const catchSound = new Howl({
+        src: [Catch],
+        volume: 0.30
+    })
+
     const handleClick = (id) => {
         dispatch(catchPokemon(id))
         Swal.fire({
@@ -198,6 +205,7 @@ const DetailCard = ({ pokemon }) => {
             width: 500,
             position: 'top',
         })
+        catchSound.play()
         history.push("/home");
     }
 

@@ -1,7 +1,11 @@
 import React from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { getPokemonById } from '../Redux/Actions/Pokemon/PokemonActions'
 import { Link } from 'react-router-dom'
+
+import Click from '../Sounds/Click.mp3'
+import { Howl } from 'howler'
 
 import styled from 'styled-components'
 
@@ -134,6 +138,11 @@ const HomeCards = ({ pokemon }) => {
     const style = useSelector(state => state.themes.style)
 
     const dispatch = useDispatch()
+
+    const click = new Howl({
+        src: [Click],
+        volume: 0.25
+    })
     
     const selectType = (type) => {
         if (style === 'glass') {
@@ -264,7 +273,7 @@ const HomeCards = ({ pokemon }) => {
     return (
         <>
             <Link to={`/details/${pokemon.id}`} style={{ textDecoration: 'none', color: 'black' }} onClick={() => dispatch(getPokemonById(pokemon.id))}>
-                <Card key={pokemon.id} className={selectType(pokemon.types[0])}>
+                <Card key={pokemon.id} className={selectType(pokemon.types[0])} onClick={() => click.play()}>
                         {pokemon.image || pokemon.imageFrontDefault ? 
                         <Pic src={pokemon.image ? pokemon.image : pokemon.imageFrontDefault} alt={pokemon.name} />
                         :

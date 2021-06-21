@@ -189,7 +189,11 @@ const AsideCard = () => {
             <Item>
                 <PokemonContainer>
                     <ImgContainer>
-                    <Img src={(pokemonCatch.length > 0) ? pokemonCatch[pokemonCatch.length-1].image : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/132.gif'}/>
+                    {(pokemonCatch.length > 0) ? 
+                    <Img src={(pokemonCatch[pokemonCatch.length-1].image) ? pokemonCatch[pokemonCatch.length-1].image : pokemonCatch[pokemonCatch.length-1].imageFrontDefault}/>
+                    :
+                    <Img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/132.gif'/>
+                    }
                     </ImgContainer>
                 </PokemonContainer>
             </Item>
